@@ -15,6 +15,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * https://developer.android.google.cn/kotlin/ktx
  *
  * https://developer.android.google.cn/kotlin/coroutines
+ *
+ * https://material.io/develop/android/components/material-card-view
  */
 
 class MainActivity : BaseActivity() {
