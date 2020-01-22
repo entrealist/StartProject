@@ -60,7 +60,7 @@ class EventBusActivity : BaseActivity() {
                     sb.append("$it, ")
                 }
 
-                tv_text.text = sb.toString()
+                edit_1.setText(sb.toString())
             })
 
 
@@ -85,7 +85,7 @@ class EventBusActivity : BaseActivity() {
         LiveEventBus
             .get(key, String::class.java)
             .observe(this, Observer { string ->
-                tv_text.text = string
+                edit_1.setText(string)
             })
 
 
@@ -102,7 +102,7 @@ class EventBusActivity : BaseActivity() {
         LiveEventBus
             .get(key, Int::class.java)
             .observe(this, Observer { int ->
-                tv_text.text = "$int"
+                edit_1.setText("$int")
             })
 
 
@@ -119,7 +119,7 @@ class EventBusActivity : BaseActivity() {
         LiveEventBus
             .get(key, UserData::class.java)
             .observe(this, Observer { ver ->
-                tv_text.text = ver.name
+                edit_1.setText(ver.name)
             })
 
 
@@ -141,7 +141,7 @@ class EventBusActivity : BaseActivity() {
 
                 "$code : $receivedCoe".also {
                     JFLog.d(it)
-                    tv_text.text = it
+                    edit_1.setText(it)
                 }
 
             })
@@ -159,7 +159,7 @@ class EventBusActivity : BaseActivity() {
         LiveEventBus
             .get(key, String::class.java)
             .observe(this, Observer { string ->
-                tv_text.text = string
+                edit_1.setText(string)
             })
 
 
@@ -183,7 +183,7 @@ class EventBusActivity : BaseActivity() {
 
                 JFLog.d("$code : $string")
 
-                tv_text.text = string
+                edit_1.setText(string)
             })
 
         btn_send.setOnClickListener {
