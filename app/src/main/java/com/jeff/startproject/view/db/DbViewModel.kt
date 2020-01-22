@@ -1,5 +1,6 @@
 package com.jeff.startproject.view.db
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jeff.startproject.dao.UserDao
 import com.jeff.startproject.model.db.DbResult
@@ -14,6 +15,8 @@ import org.koin.core.inject
 class DbViewModel : BaseViewModel() {
 
     private val userDao: UserDao by inject()
+
+    val editLayoutErrorMessage = MutableLiveData<String>()
 
     private fun insertUserFlow(users: List<User>) = flow {
         userDao.insertUser(users)

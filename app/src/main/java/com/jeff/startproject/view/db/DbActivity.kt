@@ -1,6 +1,7 @@
 package com.jeff.startproject.view.db
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.jeff.startproject.R
 import com.jeff.startproject.model.db.User
 import com.jeff.startproject.view.base.BaseActivity
@@ -19,6 +20,10 @@ class DbActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.editLayoutErrorMessage.observe(this, Observer {
+            layout_query.error = it
+        })
 
         btn_insert.setOnClickListener {
             mutableListOf<User>().also {
@@ -39,10 +44,15 @@ class DbActivity : BaseActivity() {
 
         btn_query_by.setOnClickListener {
             edit_query.text.toString().also {
-                if (it.isNotBlank()) {
-                    when (METHOD) {
-                        1 -> viewModel.queryUserByName(it)
-                        2 -> viewModel.queryUserByName2(it)
+                when {
+                    it.isBlank() -> viewModel.editLayoutErrorMessage.value = "Please input something"
+                    else -> {
+                        viewModel.editLayoutErrorMessage.value = ""
+
+                        when (METHOD) {
+                            1 -> viewModel.queryUserByName(it)
+                            2 -> viewModel.queryUserByName2(it)
+                        }
                     }
                 }
             }
@@ -50,10 +60,15 @@ class DbActivity : BaseActivity() {
 
         btn_query_like.setOnClickListener {
             edit_query.text.toString().also {
-                if (it.isNotBlank()) {
-                    when (METHOD) {
-                        1 -> viewModel.queryUserLikeName(it)
-                        2 -> viewModel.queryUserLikeName2(it)
+                when {
+                    it.isBlank() -> viewModel.editLayoutErrorMessage.value = "Please input something"
+                    else -> {
+                        viewModel.editLayoutErrorMessage.value = ""
+
+                        when (METHOD) {
+                            1 -> viewModel.queryUserLikeName(it)
+                            2 -> viewModel.queryUserLikeName2(it)
+                        }
                     }
                 }
             }
