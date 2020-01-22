@@ -1,12 +1,15 @@
 package com.jeff.startproject.view.table
 
+import android.annotation.SuppressLint
+import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.jeff.startproject.R
 import com.jeff.startproject.model.api.user.UserItem
 import com.jeff.startproject.view.table.viewholder.UserInfoViewHolder
@@ -35,13 +38,38 @@ class UserInfoListAdapter : PagedListAdapter<UserItem, UserInfoViewHolder>(diffC
         return UserInfoViewHolder(view)
     }
 
+    private val shapeArray = SparseArray<ShapeAppearanceModel>().also {
+        it.put(
+            0, ShapeAppearanceModel.builder()
+                .build()
+        )
+
+        it.put(
+            1, ShapeAppearanceModel.builder()
+                .setAllCornerSizes(ShapeAppearanceModel.PILL)
+                .build()
+        )
+
+        it.put(
+            2, ShapeAppearanceModel.builder()
+                .setAllCorners(CornerFamily.CUT, 0f)
+                .setAllCornerSizes(ShapeAppearanceModel.PILL)
+                .build()
+        )
+    }
+
+    @SuppressLint("UnsafeExperimentalUsageError")
     override fun onBindViewHolder(holder: UserInfoViewHolder, position: Int) {
         getItem(position).let {
+
+            // 方法1: 處理ImageView外框, 呈現圓形.
+            holder.ivAvatar.shapeAppearanceModel = shapeArray[position % 3]
 
             // user avatar
             Glide.with(holder.itemView.context)
                 .load(it?.avatarUrl)
-                .apply(RequestOptions.circleCropTransform())
+                // 方法2: 使用Glide將圖片轉為圓形
+                //.apply(RequestOptions.circleCropTransform())
                 .placeholder(R.mipmap.ic_launcher)
                 .into(holder.ivAvatar)
 

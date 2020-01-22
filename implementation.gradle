@@ -21,7 +21,6 @@ ext {
             koin_version              : "2.0.1",
             moshi_version             : "1.8.0",
             glide_version             : "4.11.0",
-            circle_image_view_version : "3.0.1",
             material_dialogs_version  : "3.1.0",
             pogress_hud_version       : "1.2.0",
             utilcodex_version         : "1.23.7",
