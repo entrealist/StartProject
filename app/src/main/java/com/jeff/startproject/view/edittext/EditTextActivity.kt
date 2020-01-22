@@ -45,9 +45,9 @@ class EditTextActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         if (true) {
-            MyTextWatcher(edit_first)
+            MyTextWatcher(edit_1)
         } else {
-            edit_first.addTextChangedListener(
+            edit_1.addTextChangedListener(
                 beforeTextChanged = { s, start, count, after ->
                     JFLog.d("beforeTextChanged: $s, start: $start, count: $count, after: $after")
                     // 2位+1: beforeTextChanged: 12, start: 0, count: 2, after: 3
