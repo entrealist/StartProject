@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
             <com.yulichswift.roundedview.widget.RoundedTextView
                 android:id="@+id/btn_event_bus"
@@ -27,7 +28,7 @@
                 android:text="Event bus"
                 android:textColor="@android:color/white"
                 app:btn_corner_radius="standard"
-                app:btn_pressed_color="darker"
+                app:btn_pressed_color="@android:color/darker_gray"
                 app:btn_solid_color="@android:color/black" />
 
             <com.yulichswift.roundedview.widget.RoundedTextView
@@ -37,7 +38,7 @@
                 android:text="EditText"
                 android:textColor="@android:color/white"
                 app:btn_corner_radius="standard"
-                app:btn_pressed_color="darker"
+                app:btn_pressed_color="@android:color/darker_gray"
                 app:btn_solid_color="@android:color/black" />
 
             <com.yulichswift.roundedview.widget.RoundedTextView
@@ -47,7 +48,7 @@
                 android:text="Table (RecyclerView)"
                 android:textColor="@android:color/white"
                 app:btn_corner_radius="standard"
-                app:btn_pressed_color="darker"
+                app:btn_pressed_color="@android:color/darker_gray"
                 app:btn_solid_color="@android:color/black" />
 
             <com.yulichswift.roundedview.widget.RoundedTextView
@@ -57,7 +58,7 @@
                 android:text="Room"
                 android:textColor="@android:color/white"
                 app:btn_corner_radius="standard"
-                app:btn_pressed_color="darker"
+                app:btn_pressed_color="@android:color/darker_gray"
                 app:btn_solid_color="@android:color/black" />
 
         </LinearLayout>

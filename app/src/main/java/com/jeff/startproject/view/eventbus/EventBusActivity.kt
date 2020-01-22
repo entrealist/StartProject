@@ -15,6 +15,8 @@ import kotlin.random.Random
 
 /*
  * https://github.com/JeremyLiao/LiveEventBus
+ *
+ * https://material.io/develop/android/components/material-text-view/
  */
 
 class EventBusActivity : BaseActivity() {

@@ -11,8 +11,11 @@ import com.jeff.startproject.view.table.TableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// https://developer.android.google.cn/kotlin/ktx
-// https://developer.android.google.cn/kotlin/coroutines
+/*
+ * https://developer.android.google.cn/kotlin/ktx
+ *
+ * https://developer.android.google.cn/kotlin/coroutines
+ */
 
 class MainActivity : BaseActivity() {
 
