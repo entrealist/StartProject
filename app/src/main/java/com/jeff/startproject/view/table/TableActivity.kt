@@ -27,6 +27,14 @@ class TableActivity : BaseActivity() {
             it.adapter = userInfoListAdapter
         }
 
+        viewModel.processing.observe(this, Observer {
+            if (it) {
+                progressHUD.show()
+            } else {
+                progressHUD.dismiss()
+            }
+        })
+
         viewModel.userListData.observe(this, Observer {
             userInfoListAdapter.submitList(it)
         })

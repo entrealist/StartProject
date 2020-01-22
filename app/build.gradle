@@ -98,4 +98,6 @@ dependencies {
 
     implementation rootProject.ext.dependencies["glide"]
     kapt rootProject.ext.dependencies["glide_compiler"]
+
+    implementation rootProject.ext.dependencies["progress_hud"]
 }
