@@ -19,6 +19,7 @@ class DbViewModel : BaseViewModel() {
     val editLayoutErrorMessage = MutableLiveData<String>()
 
     private fun insertUserFlow(users: List<User>) = flow {
+        JFLog.d("insertUserFlow start")
         userDao.insertUser(users)
         emit(DbResult.success("insertUserFlow"))
     }
@@ -26,6 +27,20 @@ class DbViewModel : BaseViewModel() {
     fun insertUsers(users: List<User>) {
         viewModelScope.launch {
             insertUserFlow(users)
+                .flatMapConcat {
+                    when (it) {
+                        is DbResult.Success -> {
+                            insertUserFlow(users)
+                        }
+                        else -> {
+                            throw RuntimeException("insertUsers fail")
+                        }
+                    }
+                }
+                .retryWhen { cause, attempt ->
+                    JFLog.d("retryWhen attempt: $attempt")
+                    attempt < 3
+                }
                 .flowOn(Dispatchers.IO)
                 .catch { e ->
                     emit(DbResult.error(e))
