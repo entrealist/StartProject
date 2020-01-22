@@ -27,12 +27,12 @@ class TableActivity : BaseActivity() {
             it.adapter = userInfoListAdapter
         }
 
+        layout_refresh.setOnRefreshListener {
+            viewModel.getUsers()
+        }
+
         viewModel.processing.observe(this, Observer {
-            if (it) {
-                progressHUD.show()
-            } else {
-                progressHUD.dismiss()
-            }
+            layout_refresh.isRefreshing = it
         })
 
         viewModel.userListData.observe(this, Observer {

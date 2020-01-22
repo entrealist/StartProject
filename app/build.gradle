@@ -100,4 +100,6 @@ dependencies {
     kapt rootProject.ext.dependencies["glide_compiler"]
 
     implementation rootProject.ext.dependencies["progress_hud"]
+
+    implementation rootProject.ext.dependencies["swipe_refresh_layout"]
 }
