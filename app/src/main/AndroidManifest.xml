@@ -25,6 +25,7 @@
         <activity android:name=".view.eventbus.EventBusActivity" />
         <activity android:name=".view.table.TableActivity" />
         <activity android:name=".view.edittext.EditTextActivity" />
+        <activity android:name=".view.db.DbActivity" />
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.jeff.startproject
 import android.app.Application
 import com.jeff.startproject.di.apiModule
 import com.jeff.startproject.di.appModule
+import com.jeff.startproject.di.dbModule
 import com.jeff.startproject.di.viewModelModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -27,7 +28,7 @@ class MyApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MyApplication)
-            modules(listOf(appModule, apiModule, viewModelModules))
+            modules(listOf(appModule, dbModule, apiModule, viewModelModules))
         }
     }
 }

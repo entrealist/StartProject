@@ -28,7 +28,7 @@
                 android:textColor="@android:color/white"
                 app:btn_corner_radius="standard"
                 app:btn_pressed_color="darker"
-                app:btn_solid_color="@android:color/holo_blue_light" />
+                app:btn_solid_color="@android:color/black" />
 
             <com.yulichswift.roundedview.widget.RoundedTextView
                 android:id="@+id/btn_edit"
@@ -38,7 +38,7 @@
                 android:textColor="@android:color/white"
                 app:btn_corner_radius="standard"
                 app:btn_pressed_color="darker"
-                app:btn_solid_color="@android:color/holo_blue_light" />
+                app:btn_solid_color="@android:color/black" />
 
             <com.yulichswift.roundedview.widget.RoundedTextView
                 android:id="@+id/btn_table"
@@ -48,7 +48,17 @@
                 android:textColor="@android:color/white"
                 app:btn_corner_radius="standard"
                 app:btn_pressed_color="darker"
-                app:btn_solid_color="@android:color/holo_blue_light" />
+                app:btn_solid_color="@android:color/black" />
+
+            <com.yulichswift.roundedview.widget.RoundedTextView
+                android:id="@+id/btn_room"
+                style="@style/btn_size_14"
+                android:layout_marginTop="20dp"
+                android:text="Room"
+                android:textColor="@android:color/white"
+                app:btn_corner_radius="standard"
+                app:btn_pressed_color="darker"
+                app:btn_solid_color="@android:color/black" />
 
         </LinearLayout>
 

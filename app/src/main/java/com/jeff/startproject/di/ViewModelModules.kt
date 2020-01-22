@@ -1,5 +1,6 @@
 package com.jeff.startproject.di
 
+import com.jeff.startproject.view.db.DbViewModel
 import com.jeff.startproject.view.eventbus.EventBusViewModel
 import com.jeff.startproject.view.main.MainViewModel
 import com.jeff.startproject.view.table.TableViewModel
@@ -10,4 +11,5 @@ val viewModelModules = module {
     viewModel { MainViewModel() }
     viewModel { EventBusViewModel() }
     viewModel { TableViewModel() }
+    viewModel { DbViewModel() }
 }

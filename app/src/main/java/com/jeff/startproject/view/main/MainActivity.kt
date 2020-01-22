@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.jeff.startproject.R
 import com.jeff.startproject.view.base.BaseActivity
+import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.table.TableActivity
@@ -38,6 +39,12 @@ class MainActivity : BaseActivity() {
 
         btn_edit.setOnClickListener {
             Intent(this, EditTextActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        btn_room.setOnClickListener {
+            Intent(this, DbActivity::class.java).also {
                 startActivity(it)
             }
         }
