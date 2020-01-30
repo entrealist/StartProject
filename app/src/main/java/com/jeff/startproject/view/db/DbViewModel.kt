@@ -28,13 +28,19 @@ class DbViewModel : BaseViewModel() {
         emit(DbResult.success("insertUserFlow"))
     }
 
+    private fun insertOrReplaceUserFlow(users: List<User>) = flow {
+        JFLog.d("insertOrReplaceUserFlow start")
+        userDao.insertOrReplaceUser(users)
+        emit(DbResult.success("insertOrReplaceUserFlow"))
+    }
+
     fun insertUsers(users: List<User>) {
         viewModelScope.launch {
             insertUserFlow(users)
                 .flatMapConcat {
                     when (it) {
                         is DbResult.Success -> {
-                            insertUserFlow(users)
+                            insertOrReplaceUserFlow(users)
                         }
                         else -> {
                             throw RuntimeException("insertUsers fail")
@@ -78,7 +84,7 @@ class DbViewModel : BaseViewModel() {
                 mEditLayoutErrorMessage.value = ""
 
                 when (METHOD) {
-                    1 -> queryUserByName(name)
+                    1 -> queryUserByName1(name)
                     2 -> queryUserByName2(name)
                 }
             }
@@ -92,7 +98,7 @@ class DbViewModel : BaseViewModel() {
                 mEditLayoutErrorMessage.value = ""
 
                 when (METHOD) {
-                    1 -> queryUserLikeName(name)
+                    1 -> queryUserLikeName1(name)
                     2 -> queryUserLikeName2(name)
                 }
             }
@@ -121,22 +127,7 @@ class DbViewModel : BaseViewModel() {
                     emit(DbResult.loaded())
                 }
                 .collect {
-                    when (it) {
-                        is DbResult.Empty -> {
-                            JFLog.d("Query fail")
-                        }
-                        is DbResult.Success -> {
-                            it.result.forEach { user ->
-                                JFLog.d("Db: $user")
-                            }
-                        }
-                        is DbResult.Error -> {
-                            JFLog.e("Db: $it")
-                        }
-                        else -> {
-                            JFLog.w("Db: $it")
-                        }
-                    }
+                    collectListResult(it)
                 }
         }
     }
@@ -159,20 +150,7 @@ class DbViewModel : BaseViewModel() {
                     emit(DbResult.loaded())
                 }
                 .collect {
-                    when (it) {
-                        is DbResult.Empty -> {
-                            JFLog.d("Query fail")
-                        }
-                        is DbResult.Success -> {
-                            JFLog.d("${it.result}")
-                        }
-                        is DbResult.Error -> {
-                            JFLog.e("Db: $it")
-                        }
-                        else -> {
-                            JFLog.w("Db: $it")
-                        }
-                    }
+                    collectResult(it)
                 }
         }
     }
@@ -195,20 +173,7 @@ class DbViewModel : BaseViewModel() {
                     emit(DbResult.loaded())
                 }
                 .collect {
-                    when (it) {
-                        is DbResult.Empty -> {
-                            JFLog.d("Query fail")
-                        }
-                        is DbResult.Success -> {
-                            JFLog.d("${it.result}")
-                        }
-                        is DbResult.Error -> {
-                            JFLog.e("Db: $it")
-                        }
-                        else -> {
-                            JFLog.w("Db: $it")
-                        }
-                    }
+                    collectResult(it)
                 }
         }
     }
@@ -238,22 +203,7 @@ class DbViewModel : BaseViewModel() {
                     emit(DbResult.loaded())
                 }
                 .collect {
-                    when (it) {
-                        is DbResult.Empty -> {
-                            JFLog.d("Query fail")
-                        }
-                        is DbResult.Success -> {
-                            it.result.forEach { user ->
-                                JFLog.d("Db: $user")
-                            }
-                        }
-                        is DbResult.Error -> {
-                            JFLog.e("Db: $it")
-                        }
-                        else -> {
-                            JFLog.w("Db: $it")
-                        }
-                    }
+                    collectListResult(it)
                 }
         }
     }
@@ -279,20 +229,7 @@ class DbViewModel : BaseViewModel() {
                     emit(DbResult.loaded())
                 }
                 .collect {
-                    when (it) {
-                        is DbResult.Empty -> {
-                            JFLog.d("Query fail")
-                        }
-                        is DbResult.Success -> {
-                            JFLog.d("${it.result}")
-                        }
-                        is DbResult.Error -> {
-                            JFLog.e("Db: $it")
-                        }
-                        else -> {
-                            JFLog.w("Db: $it")
-                        }
-                    }
+                    collectResult(it)
                 }
         }
     }
@@ -318,21 +255,50 @@ class DbViewModel : BaseViewModel() {
                     emit(DbResult.loaded())
                 }
                 .collect {
-                    when (it) {
-                        is DbResult.Empty -> {
-                            JFLog.d("Query fail")
-                        }
-                        is DbResult.Success -> {
-                            JFLog.d("${it.result}")
-                        }
-                        is DbResult.Error -> {
-                            JFLog.e("Db: $it")
-                        }
-                        else -> {
-                            JFLog.w("Db: $it")
-                        }
-                    }
+                    collectResult(it)
                 }
+        }
+    }
+
+    private fun collectResult(result: DbResult<User>) {
+        when (result) {
+            is DbResult.Empty -> {
+                mEditLayoutErrorMessage.value = "Db result empty"
+                JFLog.d("Query fail")
+            }
+            is DbResult.Success -> {
+                mEditLayoutErrorMessage.value = ""
+                JFLog.d("${result.result}")
+            }
+            is DbResult.Error -> {
+                mEditLayoutErrorMessage.value = "Db result error"
+                JFLog.e("Db: $result")
+            }
+            else -> {
+                JFLog.w("Db: $result")
+            }
+        }
+    }
+
+    private fun collectListResult(result: DbResult<List<User>>) {
+        when (result) {
+            is DbResult.Empty -> {
+                mEditLayoutErrorMessage.value = "Db result empty"
+                JFLog.d("Query fail")
+            }
+            is DbResult.Success -> {
+                mEditLayoutErrorMessage.value = ""
+                result.result.forEach { user ->
+                    JFLog.d("Db: $user")
+                }
+            }
+            is DbResult.Error -> {
+                mEditLayoutErrorMessage.value = "Db result error"
+                JFLog.e("Db: $result")
+            }
+            else -> {
+                JFLog.w("Db: $result")
+            }
         }
     }
 }
