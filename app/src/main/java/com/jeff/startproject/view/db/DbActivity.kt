@@ -8,8 +8,6 @@ import com.jeff.startproject.view.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_db.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-const val METHOD = 2
-
 class DbActivity : BaseActivity() {
 
     private val viewModel by viewModel<DbViewModel>()
@@ -44,33 +42,13 @@ class DbActivity : BaseActivity() {
 
         btn_query_by.setOnClickListener {
             edit_query.text.toString().also {
-                when {
-                    it.isBlank() -> viewModel.editLayoutErrorMessage.value = "Please input something"
-                    else -> {
-                        viewModel.editLayoutErrorMessage.value = ""
-
-                        when (METHOD) {
-                            1 -> viewModel.queryUserByName(it)
-                            2 -> viewModel.queryUserByName2(it)
-                        }
-                    }
-                }
+                viewModel.queryUserByName(it)
             }
         }
 
         btn_query_like.setOnClickListener {
             edit_query.text.toString().also {
-                when {
-                    it.isBlank() -> viewModel.editLayoutErrorMessage.value = "Please input something"
-                    else -> {
-                        viewModel.editLayoutErrorMessage.value = ""
-
-                        when (METHOD) {
-                            1 -> viewModel.queryUserLikeName(it)
-                            2 -> viewModel.queryUserLikeName2(it)
-                        }
-                    }
-                }
+                viewModel.queryUserLikeName(it)
             }
         }
     }

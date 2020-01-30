@@ -6,6 +6,6 @@ import androidx.lifecycle.ViewModel
 import org.koin.core.KoinComponent
 
 abstract class BaseViewModel : ViewModel(), KoinComponent {
-    protected val _processing = MutableLiveData<Boolean>()
-    val processing: LiveData<Boolean> = _processing
+    protected val mProcessing = MutableLiveData<Boolean>()
+    val processing: LiveData<Boolean> = mProcessing
 }

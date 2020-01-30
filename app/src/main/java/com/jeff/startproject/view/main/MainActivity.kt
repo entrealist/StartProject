@@ -17,6 +17,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * https://developer.android.google.cn/kotlin/coroutines
  *
  * https://material.io/develop/android/components/material-card-view
+ *
+ * https://source.android.com/setup/contribute/code-style#follow-field-naming-conventions
  */
 
 class MainActivity : BaseActivity() {

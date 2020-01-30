@@ -21,13 +21,13 @@ class TableViewModel : BaseViewModel() {
 
     private val apiRepository: ApiRepository by inject()
 
-    private val _userListData = MutableLiveData<PagedList<UserItem>>()
-    val userListData: LiveData<PagedList<UserItem>> = _userListData
+    private val mUserListData = MutableLiveData<PagedList<UserItem>>()
+    val userListData: LiveData<PagedList<UserItem>> = mUserListData
 
     fun getUsers() {
         viewModelScope.launch {
             getPagingItems().asFlow().collect {
-                _userListData.postValue(it)
+                mUserListData.postValue(it)
             }
         }
     }
@@ -41,11 +41,11 @@ class TableViewModel : BaseViewModel() {
 
     private val callback = object : PagingCallback {
         override fun onLoading() {
-            _processing.postValue(true)
+            mProcessing.postValue(true)
         }
 
         override fun onLoaded() {
-            _processing.postValue(false)
+            mProcessing.postValue(false)
         }
 
         override fun onTotalCount(count: Int) {

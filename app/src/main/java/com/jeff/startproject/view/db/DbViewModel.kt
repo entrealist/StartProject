@@ -1,5 +1,6 @@
 package com.jeff.startproject.view.db
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jeff.startproject.dao.UserDao
@@ -12,11 +13,14 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.core.inject
 
+const val METHOD = 2
+
 class DbViewModel : BaseViewModel() {
 
     private val userDao: UserDao by inject()
 
-    val editLayoutErrorMessage = MutableLiveData<String>()
+    private val mEditLayoutErrorMessage = MutableLiveData<String>()
+    val editLayoutErrorMessage: LiveData<String> = mEditLayoutErrorMessage
 
     private fun insertUserFlow(users: List<User>) = flow {
         JFLog.d("insertUserFlow start")
@@ -67,6 +71,34 @@ class DbViewModel : BaseViewModel() {
         }
     }
 
+    fun queryUserByName(name: String) {
+        when {
+            name.isBlank() -> mEditLayoutErrorMessage.value = "Please input something"
+            else -> {
+                mEditLayoutErrorMessage.value = ""
+
+                when (METHOD) {
+                    1 -> queryUserByName(name)
+                    2 -> queryUserByName2(name)
+                }
+            }
+        }
+    }
+
+    fun queryUserLikeName(name: String) {
+        when {
+            name.isBlank() -> mEditLayoutErrorMessage.value = "Please input something"
+            else -> {
+                mEditLayoutErrorMessage.value = ""
+
+                when (METHOD) {
+                    1 -> queryUserLikeName(name)
+                    2 -> queryUserLikeName2(name)
+                }
+            }
+        }
+    }
+
     /**
      * 方法一: Dao回傳Flow, 不用再包裝, 透過map轉換成DBResult.
      */
@@ -110,7 +142,7 @@ class DbViewModel : BaseViewModel() {
     }
 
     // Dao回傳Flow, 不用再包裝, 透過map轉換成DBResult.
-    fun queryUserByName(name: String) {
+    fun queryUserByName1(name: String) {
         viewModelScope.launch {
             userDao.queryUserByNameFlow(name)
                 .flowOn(Dispatchers.IO)
@@ -146,7 +178,7 @@ class DbViewModel : BaseViewModel() {
     }
 
     // Dao回傳Flow, 不用再包裝, 透過map轉換成DBResult.
-    fun queryUserLikeName(name: String) {
+    fun queryUserLikeName1(name: String) {
         viewModelScope.launch {
             userDao.queryUserLikeNameFlow(name)
                 .flowOn(Dispatchers.IO)
