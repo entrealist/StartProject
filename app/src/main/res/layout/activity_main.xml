@@ -29,6 +29,44 @@
                 android:clickable="true">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
+                    android:id="@+id/btn_room"
+                    style="@style/btn_size_14"
+                    android:layout_margin="20dp"
+                    android:text="Room"
+                    android:textColor="@android:color/white"
+                    app:btn_corner_radius="standard"
+                    app:btn_pressed_color="@android:color/darker_gray"
+                    app:btn_solid_color="@android:color/black" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true">
+
+                <com.yulichswift.roundedview.widget.RoundedTextView
+                    android:id="@+id/btn_flow"
+                    style="@style/btn_size_14"
+                    android:layout_margin="20dp"
+                    android:text="Flow"
+                    android:textColor="@android:color/white"
+                    app:btn_corner_radius="standard"
+                    app:btn_pressed_color="@android:color/darker_gray"
+                    app:btn_solid_color="@android:color/black" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true">
+
+                <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_event_bus"
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
@@ -77,26 +115,6 @@
                     app:btn_pressed_color="@android:color/darker_gray"
                     app:btn_solid_color="@android:color/black" />
             </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:clickable="true">
-
-                <com.yulichswift.roundedview.widget.RoundedTextView
-                    android:id="@+id/btn_room"
-                    style="@style/btn_size_14"
-                    android:layout_margin="20dp"
-                    android:text="Room"
-                    android:textColor="@android:color/white"
-                    app:btn_corner_radius="standard"
-                    app:btn_pressed_color="@android:color/darker_gray"
-                    app:btn_solid_color="@android:color/black" />
-            </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
 
     </ScrollView>

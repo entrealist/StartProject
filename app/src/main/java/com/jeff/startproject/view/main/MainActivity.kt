@@ -7,6 +7,7 @@ import com.jeff.startproject.view.base.BaseActivity
 import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
+import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.table.TableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,9 +17,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  *
  * https://developer.android.google.cn/kotlin/coroutines
  *
+ * https://source.android.com/setup/contribute/code-style#follow-field-naming-conventions
+ *
  * https://material.io/develop/android/components/material-card-view
  *
- * https://source.android.com/setup/contribute/code-style#follow-field-naming-conventions
+ * https://material.io/develop/android/components/material-button/
  */
 
 class MainActivity : BaseActivity() {
@@ -52,6 +55,12 @@ class MainActivity : BaseActivity() {
 
         btn_room.setOnClickListener {
             Intent(this, DbActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        btn_flow.setOnClickListener {
+            Intent(this, FlowControlActivity::class.java).also {
                 startActivity(it)
             }
         }
