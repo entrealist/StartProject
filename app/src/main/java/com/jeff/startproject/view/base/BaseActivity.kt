@@ -2,9 +2,12 @@ package com.jeff.startproject.view.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 import com.kaopiz.kprogresshud.KProgressHUD
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
+
+    lateinit var binding: B
 
     val progressHUD: KProgressHUD by lazy {
         KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -13,8 +16,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(getLayoutId())
+        binding = getViewBinding()
+        setContentView(binding.root)
     }
 
-    abstract fun getLayoutId(): Int
+    abstract fun getViewBinding(): B
 }

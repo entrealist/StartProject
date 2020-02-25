@@ -2,14 +2,13 @@ package com.jeff.startproject.view.main
 
 import android.content.Intent
 import android.os.Bundle
-import com.jeff.startproject.R
+import com.jeff.startproject.databinding.ActivityMainBinding
 import com.jeff.startproject.view.base.BaseActivity
 import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.table.TableActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /*
@@ -22,44 +21,46 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * https://material.io/develop/android/components/material-card-view
  *
  * https://material.io/develop/android/components/material-button/
+ *
+ * https://developer.android.com/topic/libraries/view-binding
  */
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val viewModel by viewModel<MainViewModel>()
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_main
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        btn_event_bus.setOnClickListener {
+        binding.btnEventBus.setOnClickListener {
             Intent(this, EventBusActivity::class.java).also {
                 startActivity(it)
             }
         }
 
-        btn_table.setOnClickListener {
+        binding.btnTable.setOnClickListener {
             Intent(this, TableActivity::class.java).also {
                 startActivity(it)
             }
         }
 
-        btn_edit.setOnClickListener {
+        binding.btnEdit.setOnClickListener {
             Intent(this, EditTextActivity::class.java).also {
                 startActivity(it)
             }
         }
 
-        btn_room.setOnClickListener {
+        binding.btnRoom.setOnClickListener {
             Intent(this, DbActivity::class.java).also {
                 startActivity(it)
             }
         }
 
-        btn_flow.setOnClickListener {
+        binding.btnFlow.setOnClickListener {
             Intent(this, FlowControlActivity::class.java).also {
                 startActivity(it)
             }

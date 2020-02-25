@@ -3,11 +3,10 @@ package com.jeff.startproject.view.eventbus
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.jeff.startproject.R
+import com.jeff.startproject.databinding.ActivityEventBusBinding
 import com.jeff.startproject.view.base.BaseActivity
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.log.JFLog
-import kotlinx.android.synthetic.main.activity_event_bus.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList
@@ -19,18 +18,18 @@ import kotlin.random.Random
  * https://material.io/develop/android/components/material-text-view/
  */
 
-class EventBusActivity : BaseActivity() {
+class EventBusActivity : BaseActivity<ActivityEventBusBinding>() {
 
     private val viewModel by viewModel<EventBusViewModel>()
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_event_bus
+    override fun getViewBinding(): ActivityEventBusBinding {
+        return ActivityEventBusBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        btn_next.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             Intent(this, EventBusActivity::class.java).also {
                 startActivity(it)
             }
@@ -60,11 +59,11 @@ class EventBusActivity : BaseActivity() {
                     sb.append("$it, ")
                 }
 
-                edit_1.setText(sb.toString())
+                binding.edit1.setText(sb.toString())
             })
 
 
-        btn_send.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             val arrayList = ArrayList<String>()
             arrayList.add("a")
             arrayList.add("b")
@@ -85,11 +84,11 @@ class EventBusActivity : BaseActivity() {
         LiveEventBus
             .get(key, String::class.java)
             .observe(this, Observer { string ->
-                edit_1.setText(string)
+                binding.edit1.setText(string)
             })
 
 
-        btn_send.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             LiveEventBus
                 .get(key)
                 .post("${Random(Calendar.getInstance().timeInMillis).nextInt()}")
@@ -102,11 +101,11 @@ class EventBusActivity : BaseActivity() {
         LiveEventBus
             .get(key, Int::class.java)
             .observe(this, Observer { int ->
-                edit_1.setText("$int")
+                binding.edit1.setText("$int")
             })
 
 
-        btn_send.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             LiveEventBus
                 .get(key)
                 .post(Random(Calendar.getInstance().timeInMillis).nextInt())
@@ -119,11 +118,11 @@ class EventBusActivity : BaseActivity() {
         LiveEventBus
             .get(key, UserData::class.java)
             .observe(this, Observer { ver ->
-                edit_1.setText(ver.name)
+                binding.edit1.setText(ver.name)
             })
 
 
-        btn_send.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             LiveEventBus
                 .get(key)
                 .post(UserData("Jeff"))
@@ -141,12 +140,12 @@ class EventBusActivity : BaseActivity() {
 
                 "$code : $receivedCoe".also {
                     JFLog.d(it)
-                    edit_1.setText(it)
+                    binding.edit1.setText(it)
                 }
 
             })
 
-        btn_send.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             LiveEventBus
                 .get(key)
                 .post(this)
@@ -159,11 +158,11 @@ class EventBusActivity : BaseActivity() {
         LiveEventBus
             .get(key, String::class.java)
             .observe(this, Observer { string ->
-                edit_1.setText(string)
+                binding.edit1.setText(string)
             })
 
 
-        btn_send.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             LiveEventBus
                 .get(key)
                 .postDelay("${Random(Calendar.getInstance().timeInMillis).nextInt()}", 5000L)
@@ -183,10 +182,10 @@ class EventBusActivity : BaseActivity() {
 
                 JFLog.d("$code : $string")
 
-                edit_1.setText(string)
+                binding.edit1.setText(string)
             })
 
-        btn_send.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             LiveEventBus
                 .get(key)
                 .post("${Random(Calendar.getInstance().timeInMillis).nextInt()}")

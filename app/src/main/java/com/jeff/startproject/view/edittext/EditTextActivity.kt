@@ -2,10 +2,9 @@ package com.jeff.startproject.view.edittext
 
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
-import com.jeff.startproject.R
+import com.jeff.startproject.databinding.ActivityEditBinding
 import com.jeff.startproject.view.base.BaseActivity
 import com.log.JFLog
-import kotlinx.android.synthetic.main.activity_edit.*
 
 // (TextWatcher) https://developer.android.com/reference/android/text/TextWatcher.html
 
@@ -35,19 +34,19 @@ import kotlinx.android.synthetic.main.activity_edit.*
  *
  */
 
-class EditTextActivity : BaseActivity() {
+class EditTextActivity : BaseActivity<ActivityEditBinding>() {
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_edit
+    override fun getViewBinding(): ActivityEditBinding {
+        return ActivityEditBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         if (true) {
-            MyTextWatcher(edit_1)
+            MyTextWatcher(binding.edit1)
         } else {
-            edit_1.addTextChangedListener(
+            binding.edit1.addTextChangedListener(
                 beforeTextChanged = { s, start, count, after ->
                     JFLog.d("beforeTextChanged: $s, start: $start, count: $count, after: $after")
                     // 2位+1: beforeTextChanged: 12, start: 0, count: 2, after: 3

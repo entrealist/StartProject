@@ -63,7 +63,7 @@ class UserInfoListAdapter : PagedListAdapter<UserItem, UserInfoViewHolder>(diffC
         getItem(position).let {
 
             // 方法1: 處理ImageView外框, 呈現圓形.
-            holder.ivAvatar.shapeAppearanceModel = shapeArray[position % 3]
+            holder.binding.ivAvatar.shapeAppearanceModel = shapeArray[position % 3]
 
             // user avatar
             Glide.with(holder.itemView.context)
@@ -71,18 +71,18 @@ class UserInfoListAdapter : PagedListAdapter<UserItem, UserInfoViewHolder>(diffC
                 // 方法2: 使用Glide將圖片轉為圓形
                 //.apply(RequestOptions.circleCropTransform())
                 .placeholder(R.mipmap.ic_launcher)
-                .into(holder.ivAvatar)
+                .into(holder.binding.ivAvatar)
 
             // user login
             it?.login.run {
-                holder.tvName.text = it?.login
+                holder.binding.tvName.text = it?.login
             }
 
             // user badge
             if (it!!.isSiteAdmin!!) {
-                holder.tvBadge.visibility = View.VISIBLE
+                holder.binding.tvBadge.visibility = View.VISIBLE
             } else {
-                holder.tvBadge.visibility = View.GONE
+                holder.binding.tvBadge.visibility = View.GONE
             }
         }
     }

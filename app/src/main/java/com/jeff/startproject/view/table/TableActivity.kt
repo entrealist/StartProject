@@ -4,17 +4,16 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.jeff.startproject.R
+import com.jeff.startproject.databinding.ActivityTableBinding
 import com.jeff.startproject.view.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_table.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TableActivity : BaseActivity() {
+class TableActivity : BaseActivity<ActivityTableBinding>() {
 
     private val viewModel by viewModel<TableViewModel>()
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_table
+    override fun getViewBinding(): ActivityTableBinding {
+        return ActivityTableBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,17 +21,17 @@ class TableActivity : BaseActivity() {
 
         val userInfoListAdapter = UserInfoListAdapter()
 
-        recycler_view.let {
+        binding.recyclerView.let {
             it.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             it.adapter = userInfoListAdapter
         }
 
-        layout_refresh.setOnRefreshListener {
+        binding.layoutRefresh.setOnRefreshListener {
             viewModel.getUsers()
         }
 
         viewModel.processing.observe(this, Observer {
-            layout_refresh.isRefreshing = it
+            binding.layoutRefresh.isRefreshing = it
         })
 
         viewModel.userListData.observe(this, Observer {
