@@ -20,7 +20,7 @@ class AuthInterceptor(private val pref: Pref) : Interceptor, KoinComponent {
 
         val response = chain.proceed(chain.buildRequest())
 
-        return when (response.code()) {
+        return when (response.code) {
             HttpURLConnection.HTTP_UNAUTHORIZED -> {
                 //TODO: do refresh token, then new token save to pref.token
                 /*
