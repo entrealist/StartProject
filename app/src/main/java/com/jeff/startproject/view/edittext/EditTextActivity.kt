@@ -44,7 +44,8 @@ class EditTextActivity : BaseActivity<ActivityEditBinding>() {
         super.onCreate(savedInstanceState)
 
         if (true) {
-            MyTextWatcher(binding.edit1)
+            //MyTextWatcher(binding.edit1)
+            CurrencyTextWatcher(binding.edit1)
         } else {
             binding.edit1.addTextChangedListener(
                 beforeTextChanged = { s, start, count, after ->

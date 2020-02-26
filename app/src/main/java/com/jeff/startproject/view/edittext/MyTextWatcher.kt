@@ -6,7 +6,7 @@ import android.widget.EditText
 import com.log.JFLog
 
 // https://kknews.cc/zh-tw/news/mg8bl89.html
-class MyTextWatcher(val editText: EditText) : TextWatcher {
+class MyTextWatcher(private val editText: EditText) : TextWatcher {
 
     private var regex: Regex
 
@@ -20,6 +20,7 @@ class MyTextWatcher(val editText: EditText) : TextWatcher {
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        JFLog.d("onTextChanged")
     }
 
     override fun afterTextChanged(editable: Editable?) {
