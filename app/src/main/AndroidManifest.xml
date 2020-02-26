@@ -29,6 +29,7 @@
         <activity android:name=".view.edittext.EditTextActivity" />
         <activity android:name=".view.db.DbActivity" />
         <activity android:name=".view.flowcontrol.FlowControlActivity" />
+        <activity android:name=".view.sample.SampleActivity" />
     </application>
 
 </manifest>

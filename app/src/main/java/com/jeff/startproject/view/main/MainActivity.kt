@@ -8,6 +8,7 @@ import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
+import com.jeff.startproject.view.sample.SampleActivity
 import com.jeff.startproject.view.table.TableActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -62,6 +63,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnFlow.setOnClickListener {
             Intent(this, FlowControlActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnSample.setOnClickListener {
+            Intent(this, SampleActivity::class.java).also {
                 startActivity(it)
             }
         }
