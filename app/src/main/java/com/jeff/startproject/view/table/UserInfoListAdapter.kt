@@ -13,6 +13,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import com.jeff.startproject.R
 import com.jeff.startproject.model.api.user.UserItem
 import com.jeff.startproject.view.table.viewholder.UserInfoViewHolder
+import com.log.JFLog
 
 class UserInfoListAdapter : PagedListAdapter<UserItem, UserInfoViewHolder>(diffCallback) {
 
@@ -61,6 +62,9 @@ class UserInfoListAdapter : PagedListAdapter<UserItem, UserInfoViewHolder>(diffC
     @SuppressLint("UnsafeExperimentalUsageError")
     override fun onBindViewHolder(holder: UserInfoViewHolder, position: Int) {
         getItem(position).let {
+            holder.binding.root.setOnClickListener { _ ->
+                JFLog.d("OnClick: $it")
+            }
 
             // 方法1: 處理ImageView外框, 呈現圓形.
             holder.binding.ivAvatar.shapeAppearanceModel = shapeArray[position % 3]
