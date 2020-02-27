@@ -13,11 +13,16 @@ class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
     }
 
     private var last = ""
+    private var isUpdated = false
     private var isRemoveDot = false
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        if (isUpdated)
+            return
+
         if (count == 1 && after == 0) {
-            if (!s.isNullOrBlank() && s[start] == ',') {
+            if (s != null && s.length % 4 == start % 4) {
+                //if (!s.isNullOrBlank() && s[start] == ',') {
                 isRemoveDot = true
             }
         }
@@ -25,8 +30,11 @@ class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         if (s.toString() != last) {
+            var selectionSupport = 0
+
             val nowString = when {
                 isRemoveDot -> {
+                    selectionSupport--
                     isRemoveDot = false
                     s.toString().removeRange(editText.selectionStart - 1, editText.selectionStart)
                 }
@@ -59,7 +67,7 @@ class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
             val sbLength = sb.length
 
             // TODO: 未完成範圍刪除判斷游標
-            val newSelStart =
+            val newSelectionStart =
                 (sbLength - last.length)
                     .let {
                         when {
@@ -68,6 +76,8 @@ class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
                             else -> editText.selectionStart
                         }
                     }.let {
+                        it + selectionSupport
+                    }.let {
                         when {
                             it < 0 -> 0
                             it > sbLength -> sbLength
@@ -75,10 +85,14 @@ class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
                         }
                     }
 
+            isUpdated = true
+
             last = sb.toString()
 
             editText.setText(last)
-            editText.setSelection(newSelStart)
+            editText.setSelection(newSelectionStart)
+
+            isUpdated = false
         }
     }
 
