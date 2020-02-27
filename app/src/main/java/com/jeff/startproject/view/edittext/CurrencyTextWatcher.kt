@@ -4,12 +4,18 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import java.lang.StringBuilder
+import com.log.JFLog
 
 // val moneyFormat = NumberFormat.getCurrencyInstance(Locale.CHINA).format(money)
 class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
 
     init {
         editText.addTextChangedListener(this)
+    }
+
+    // TODO: 不建議使用
+    protected fun finalize() {
+        JFLog.d("GC")
     }
 
     private var last = ""

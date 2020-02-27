@@ -26,13 +26,14 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:clickable="true">
+                android:clickable="true"
+                android:focusable="true">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_room"
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
-                    android:text="Room"
+                    android:text="@string/text_room"
                     android:textColor="@android:color/white"
                     app:btn_corner_radius="standard"
                     app:btn_pressed_color="@android:color/darker_gray"
@@ -45,13 +46,14 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:clickable="true">
+                android:clickable="true"
+                android:focusable="true">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_flow"
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
-                    android:text="Flow"
+                    android:text="@string/text_flow"
                     android:textColor="@android:color/white"
                     app:btn_corner_radius="standard"
                     app:btn_pressed_color="@android:color/darker_gray"
@@ -64,13 +66,14 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:clickable="true">
+                android:clickable="true"
+                android:focusable="true">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_event_bus"
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
-                    android:text="Event bus"
+                    android:text="@string/text_event_bus"
                     android:textColor="@android:color/white"
                     app:btn_corner_radius="standard"
                     app:btn_pressed_color="@android:color/darker_gray"
@@ -84,13 +87,14 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:clickable="true">
+                android:clickable="true"
+                android:focusable="true">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_edit"
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
-                    android:text="EditText"
+                    android:text="@string/text_text_watcher"
                     android:textColor="@android:color/white"
                     app:btn_corner_radius="standard"
                     app:btn_pressed_color="@android:color/darker_gray"
@@ -103,13 +107,14 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:clickable="true">
+                android:clickable="true"
+                android:focusable="true">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_table"
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
-                    android:text="Table (RecyclerView)"
+                    android:text="@string/text_table_recycler_view"
                     android:textColor="@android:color/white"
                     app:btn_corner_radius="standard"
                     app:btn_pressed_color="@android:color/darker_gray"
@@ -122,13 +127,14 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:clickable="true">
+                android:clickable="true"
+                android:focusable="true">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_sample"
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
-                    android:text="Sample"
+                    android:text="@string/text_sample"
                     android:textColor="@android:color/white"
                     app:btn_corner_radius="standard"
                     app:btn_pressed_color="@android:color/darker_gray"
