@@ -50,18 +50,28 @@ class EditTextActivity : BaseActivity<ActivityEditBinding>() {
             binding.edit1.addTextChangedListener(
                 beforeTextChanged = { s, start, count, after ->
                     JFLog.d("beforeTextChanged: $s, start: $start, count: $count, after: $after")
-                    // 2位+1: beforeTextChanged: 12, start: 0, count: 2, after: 3
-                    // 2位-1: beforeTextChanged: 12, start: 1, count: 1, after: 0
+                    // +1: beforeTextChanged: 123456789, start: 4, count: 0, after: 1
+                    // -1: beforeTextChanged: 123456789, start: 3, count: 1, after: 0
+
+                    // -5: beforeTextChanged: 123456789, start: 2, count: 5, after: 0
+                    // -5+1: beforeTextChanged: 123456789, start: 2, count: 5, after: 1
                 },
                 onTextChanged = { s, start, before, count ->
                     JFLog.d("onTextChanged: $s, start: $start, before: $before, count: $count")
-                    // 2位+1: onTextChanged: 123, start: 0, before: 2, count: 3
-                    // 2位-1: onTextChanged: 1, start: 1, before: 1, count: 0
+                    // +1: onTextChanged: 1234056789, start: 4, before: 2, count: 1
+                    // -1: onTextChanged: 12356789, start: 3, before: 1, count: 0
+
+                    // -5: onTextChanged: 1289, start: 2, before: 5, count: 0
+                    // -5+1: onTextChanged: 12089, start: 2, before: 5, count: 1
+
                 },
                 afterTextChanged = { editable ->
                     JFLog.d("afterTextChanged: ${editable.toString()}")
-                    // 2位+1: afterTextChanged: 123
-                    // 2位-1: afterTextChanged: 1
+                    // +1: afterTextChanged: 1234056789
+                    // -1: afterTextChanged: 12356789
+
+                    // -5: afterTextChanged: 1289
+                    // -5+1: afterTextChanged: 12089
                 }
             )
         }

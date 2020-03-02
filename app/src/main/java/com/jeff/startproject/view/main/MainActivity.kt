@@ -25,6 +25,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * https://material.io/develop/android/components/material-button/
  *
  * https://developer.android.com/topic/libraries/view-binding
+ *
+ * https://www.jianshu.com/p/c6a6d08f4a2b
  */
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
