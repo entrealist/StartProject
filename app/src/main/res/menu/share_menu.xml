@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_share"
-        android:icon="@drawable/ic_detail_share"
+        android:icon="@drawable/ic_share"
         android:title="@string/text_table_recycler_view"
         app:showAsAction="ifRoom" />
 

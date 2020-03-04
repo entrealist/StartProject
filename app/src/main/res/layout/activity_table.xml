@@ -46,7 +46,7 @@
                 android:background="@android:color/transparent"
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_detail_back"
+                app:navigationIcon="@drawable/ic_back"
                 app:titleTextColor="@android:color/darker_gray"
                 app:menu="@menu/share_menu"/>
 
