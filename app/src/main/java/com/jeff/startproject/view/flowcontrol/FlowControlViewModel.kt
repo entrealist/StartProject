@@ -1,7 +1,7 @@
 package com.jeff.startproject.view.flowcontrol
 
 import androidx.lifecycle.viewModelScope
-import com.jeff.startproject.view.base.BaseViewModel
+import com.jeff.startproject.view.base.LogcatViewModel
 import com.log.JFLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
-class FlowControlViewModel : BaseViewModel() {
+class FlowControlViewModel : LogcatViewModel() {
 
     private fun fetchSamples() = flow {
         for (i in 0..99) {
@@ -32,10 +32,14 @@ class FlowControlViewModel : BaseViewModel() {
                 fetchSamples()
                     .flowOn(Dispatchers.IO)
                     .catch { e ->
-                        JFLog.e(e)
+                        JFLog.e(e).also {
+                            appendMessage(it)
+                        }
                     }
                     .collect {
-                        JFLog.d(it)
+                        JFLog.d(it).also {
+                            appendMessage(it)
+                        }
                     }
             }
         }
@@ -47,10 +51,14 @@ class FlowControlViewModel : BaseViewModel() {
                 fetchSamples()
                     .flowOn(Dispatchers.IO)
                     .catch { e ->
-                        JFLog.e(e)
+                        JFLog.e(e).also {
+                            appendMessage(it)
+                        }
                     }
                     .collect {
-                        JFLog.d(it)
+                        JFLog.d(it).also {
+                            appendMessage(it)
+                        }
                     }
             }
         }

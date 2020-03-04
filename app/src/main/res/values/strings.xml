@@ -7,4 +7,7 @@
     <string name="text_table_recycler_view">Table (RecyclerView)</string>
     <string name="text_sample">Sample</string>
     <string name="text_animation">Animation</string>
+    <string name="text_join">Join</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_cancel_task">Cancel task</string>
 </resources>
