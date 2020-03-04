@@ -6,4 +6,5 @@
     <string name="text_text_watcher">Text watcher</string>
     <string name="text_table_recycler_view">Table (RecyclerView)</string>
     <string name="text_sample">Sample</string>
+    <string name="text_animation">Animation</string>
 </resources>

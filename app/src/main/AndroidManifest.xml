@@ -30,6 +30,7 @@
         <activity android:name=".view.db.DbActivity" />
         <activity android:name=".view.flowcontrol.FlowControlActivity" />
         <activity android:name=".view.sample.SampleActivity" />
+        <activity android:name=".view.vector.VectorActivity" />
     </application>
 
 </manifest>

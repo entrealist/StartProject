@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_smile">
+    <target
+        android:animation="@animator/ani_smile"
+        android:name="face" />
+
+    <target
+        android:animation="@animator/ani_month"
+        android:name="month" />
+
+    <target
+        android:animation="@animator/ani_left_eye"
+        android:name="left_eye" />
+
+    <target
+        android:animation="@animator/ani_right_eye"
+        android:name="right_eye" />
+</animated-vector>
