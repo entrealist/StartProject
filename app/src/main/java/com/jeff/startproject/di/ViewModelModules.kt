@@ -3,6 +3,7 @@ package com.jeff.startproject.di
 import com.jeff.startproject.view.db.DbViewModel
 import com.jeff.startproject.view.eventbus.EventBusViewModel
 import com.jeff.startproject.view.flowcontrol.FlowControlViewModel
+import com.jeff.startproject.view.login.LoginViewModel
 import com.jeff.startproject.view.main.MainViewModel
 import com.jeff.startproject.view.sample.SampleViewModel
 import com.jeff.startproject.view.table.TableViewModel
@@ -16,4 +17,5 @@ val viewModelModules = module {
     viewModel { DbViewModel() }
     viewModel { FlowControlViewModel() }
     viewModel { SampleViewModel() }
+    viewModel { LoginViewModel() }
 }

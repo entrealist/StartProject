@@ -5,10 +5,12 @@ import android.graphics.Color
 import android.os.Bundle
 import com.jeff.startproject.databinding.ActivityMainBinding
 import com.jeff.startproject.view.base.BaseActivity
+import com.jeff.startproject.view.chain.ChainActivity
 import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
+import com.jeff.startproject.view.login.LoginActivity
 import com.jeff.startproject.view.sample.SampleActivity
 import com.jeff.startproject.view.table.TableActivity
 import com.jeff.startproject.view.vector.VectorActivity
@@ -81,6 +83,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnSample.setOnClickListener {
             Intent(this, SampleActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnLogin.setOnClickListener {
+            Intent(this, LoginActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnChain.setOnClickListener {
+            Intent(this, ChainActivity::class.java).also {
                 startActivity(it)
             }
         }

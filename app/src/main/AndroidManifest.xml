@@ -31,6 +31,8 @@
         <activity android:name=".view.flowcontrol.FlowControlActivity" />
         <activity android:name=".view.sample.SampleActivity" />
         <activity android:name=".view.vector.VectorActivity" />
+        <activity android:name=".view.login.LoginActivity" />
+        <activity android:name=".view.chain.ChainActivity" />
     </application>
 
 </manifest>

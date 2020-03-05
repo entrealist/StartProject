@@ -10,4 +10,10 @@
     <string name="text_join">Join</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_cancel_task">Cancel task</string>
+    <string name="text_login">Login</string>
+    <string name="text_name">Name</string>
+    <string name="text_password">Password</string>
+    <string name="text_mail">E-mail</string>
+    <string name="text_reset">Reset</string>
+    <string name="text_chain">Chain</string>
 </resources>
