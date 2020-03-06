@@ -4,37 +4,36 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.jeff.startproject.model.sample.LoginUser
-import com.jeff.startproject.utils.LiveDataTextWatcher
+import com.jeff.startproject.utils.EditTextLiveData
+import com.jeff.startproject.utils.EditTextMutableLiveData
 import com.jeff.startproject.view.base.BaseViewModel
 import java.math.BigDecimal
 
 class LoginViewModel : BaseViewModel() {
 
-    private val mMail = MutableLiveData<String>().also { it.value = "jeff@mail.com" }
-    val mail: LiveData<String> = mMail
-    val mailTextWatcher = LiveDataTextWatcher(mMail)
+    private val mMailLiveData = EditTextMutableLiveData("jeff@mail.com")
+    val editTextMailLiveData: EditTextLiveData = mMailLiveData
 
-    private val mPassword = MutableLiveData<String>().also { it.value = "123456" }
-    val password: LiveData<String> = mPassword
-    val passwordTextWatcher = LiveDataTextWatcher(mPassword)
+    private val mPasswordLiveData = EditTextMutableLiveData("123456")
+    val editTextPasswordLiveData: EditTextLiveData = mPasswordLiveData
 
     private val mLoginUser = MutableLiveData<LoginUser>()
     val loginUser: LiveData<LoginUser> = mLoginUser
 
     fun updatedLoginUser() {
-        mLoginUser.value = LoginUser(mMail.value, mPassword.value)
+        mLoginUser.value = LoginUser(mMailLiveData.value, mPasswordLiveData.value)
     }
 
     fun resetInput() {
-        mMail.value = ""
-        mPassword.value = ""
+        mMailLiveData.value = ""
+        mPasswordLiveData.value = ""
     }
 
     // Transformations Map
-    val liveDataMap = Transformations.map(mMail, String::toUpperCase)
+    val mapLiveData = Transformations.map(mMailLiveData, String::toUpperCase)
 
     // Transformations Switch Map
-    val liveDataSwitchMap = Transformations.switchMap(mPassword) { string ->
+    val switchMapLiveData = Transformations.switchMap(mPasswordLiveData) { string ->
         MutableLiveData<BigDecimal>().also { liveData ->
             liveData.value = string.toBigDecimalOrNull() ?: BigDecimal(0)
         }

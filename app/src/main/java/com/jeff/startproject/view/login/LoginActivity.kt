@@ -2,9 +2,7 @@ package com.jeff.startproject.view.login
 
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityLoginBinding
@@ -49,29 +47,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         binding.toolbar.navigationIcon?.repeatAnimation(binding.toolbar)
     }
 
-    // 觀察 LiveData 更新 EditText, 檢查 LiveData 與 EditText 內容避免重複更新.
-    private fun setupLiveDataAndEditText(liveData: LiveData<String>, editText: EditText) {
-        liveData.observe(this, Observer {
-            if (editText.text.toString() != it) {
-                editText.setText(it)
-            }
-        })
-    }
-
     private fun setupObserve() {
-        viewModel.liveDataMap.observe(this, Observer {
+        viewModel.mapLiveData.observe(this, Observer {
             binding.textWatchUser.text = "Mail: $it"
         })
-        viewModel.liveDataSwitchMap.observe(this, Observer {
+        viewModel.switchMapLiveData.observe(this, Observer {
             binding.textWatchPassword.text = "Password: $it"
         })
 
-        setupLiveDataAndEditText(viewModel.mail, binding.editEmail)
-        setupLiveDataAndEditText(viewModel.password, binding.editPassword)
-
-        // EditText 透過新增 TextChangedListener 更新 LiveData, 檢查 LiveData 與 EditText 內容避免重複更新.
-        binding.editEmail.addTextChangedListener(viewModel.mailTextWatcher)
-        binding.editPassword.addTextChangedListener(viewModel.passwordTextWatcher)
+        viewModel.editTextMailLiveData.bindingEditText = binding.editEmail
+        viewModel.editTextPasswordLiveData.bindingEditText = binding.editPassword
 
         viewModel.loginUser.observe(this, Observer { loginUser ->
             when {
