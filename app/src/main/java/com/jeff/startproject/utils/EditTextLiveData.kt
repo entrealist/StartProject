@@ -8,8 +8,8 @@ import java.lang.ref.WeakReference
 
 abstract class EditTextLiveData(value: String? = null) : LiveData<String>(value) {
     private var isFirst = false
-    private var editText: EditText? = null
-    private var ref: WeakReference<EditTextLiveData>? = null
+    private var thisRef: WeakReference<EditTextLiveData>? = null
+    private var editTextRef: WeakReference<EditText>? = null
 
     private val textWatcher: TextWatcher by lazy {
         object : TextWatcher {
@@ -18,7 +18,7 @@ abstract class EditTextLiveData(value: String? = null) : LiveData<String>(value)
                 if (isFirst) {
                     isFirst = false
                 } else {
-                    ref?.get()?.setLiveDataValue(s.toString())
+                    thisRef?.get()?.setLiveDataValue(s.toString())
                 }
             }
 
@@ -32,21 +32,22 @@ abstract class EditTextLiveData(value: String? = null) : LiveData<String>(value)
 
     var bindingEditText: EditText?
         get() {
-            return editText
+            return editTextRef?.get()
         }
         set(view) {
-            if (ref?.get() == null) {
-                ref = WeakReference(this)
+            if (thisRef?.get() == null) {
+                thisRef = WeakReference(this)
             }
 
-            if (editText != null) {
-                editText?.removeTextChangedListener(textWatcher)
-                editText = null
+            editTextRef?.get()?.also { lastEdit ->
+                lastEdit.removeTextChangedListener(textWatcher)
+                editTextRef = null
             }
 
-            if (view != null) {
+            view?.also {
                 isFirst = true
-                editText = view
+                editTextRef = WeakReference(view)
+
                 view.addTextChangedListener(textWatcher)
                 value.also {
                     view.setText(it ?: "")
@@ -56,16 +57,16 @@ abstract class EditTextLiveData(value: String? = null) : LiveData<String>(value)
         }
 
     override fun setValue(value: String?) {
-        when (editText) {
+        when (val editText = editTextRef?.get()) {
             null -> super.setValue(value)
-            else -> editText?.setText(value ?: "")
+            else -> editText.setText(value ?: "")
         }
     }
 
     override fun postValue(value: String?) {
-        when (editText) {
+        when (val editText = editTextRef?.get()) {
             null -> super.postValue(value)
-            else -> editText?.setText(value ?: "")
+            else -> editText.setText(value ?: "")
         }
     }
 }
