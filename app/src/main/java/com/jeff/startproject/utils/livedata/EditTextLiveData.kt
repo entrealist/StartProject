@@ -1,4 +1,4 @@
-package com.jeff.startproject.utils
+package com.jeff.startproject.utils.livedata
 
 import android.text.Editable
 import android.text.TextWatcher

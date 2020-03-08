@@ -1,4 +1,4 @@
-package com.jeff.startproject.utils
+package com.jeff.startproject.utils.livedata
 
 class EditTextMutableLiveData(value: String? = null) : EditTextLiveData(value) {
 
