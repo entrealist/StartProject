@@ -33,6 +33,8 @@
         <activity android:name=".view.vector.VectorActivity" />
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.chain.ChainActivity" />
+        <activity android:name=".view.websocket.WebSocketActivity" />
+        <activity android:name=".view.navigation.NavigationActivity" />
     </application>
 
 </manifest>

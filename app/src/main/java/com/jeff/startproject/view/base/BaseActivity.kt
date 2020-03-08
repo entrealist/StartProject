@@ -7,7 +7,9 @@ import com.kaopiz.kprogresshud.KProgressHUD
 
 abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
 
-    lateinit var binding: B
+    val binding: B by lazy {
+        getViewBinding()
+    }
 
     val progressHUD: KProgressHUD by lazy {
         KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -16,7 +18,6 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = getViewBinding()
         setContentView(binding.root)
     }
 

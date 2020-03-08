@@ -11,9 +11,11 @@ import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.login.LoginActivity
+import com.jeff.startproject.view.navigation.NavigationActivity
 import com.jeff.startproject.view.sample.SampleActivity
 import com.jeff.startproject.view.table.TableActivity
 import com.jeff.startproject.view.vector.VectorActivity
+import com.jeff.startproject.view.websocket.WebSocketActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /*
@@ -95,6 +97,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnChain.setOnClickListener {
             Intent(this, ChainActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnWebsocket.setOnClickListener {
+            Intent(this, WebSocketActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnNavigation.setOnClickListener {
+            Intent(this, NavigationActivity::class.java).also {
                 startActivity(it)
             }
         }

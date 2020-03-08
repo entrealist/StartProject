@@ -16,4 +16,6 @@
     <string name="text_mail">E-mail</string>
     <string name="text_reset">Reset</string>
     <string name="text_chain">Chain</string>
+    <string name="text_websocket">WebSocket</string>
+    <string name="text_navigation">Navigation</string>
 </resources>
