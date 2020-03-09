@@ -36,6 +36,8 @@
         <activity android:name=".view.websocket.WebSocketActivity" />
         <activity android:name=".view.navigation.NavigationActivity" />
         <activity android:name=".view.draw.DrawActivity" />
+        <activity android:name=".view.adbcmd.AdbCmdActivity" />
+        <activity android:name=".view.runtimeexec.RuntimeExecActivity" />
     </application>
 
 </manifest>

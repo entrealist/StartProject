@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import com.jeff.startproject.databinding.ActivityMainBinding
+import com.jeff.startproject.view.adbcmd.AdbCmdActivity
 import com.jeff.startproject.view.base.BaseActivity
 import com.jeff.startproject.view.chain.ChainActivity
 import com.jeff.startproject.view.db.DbActivity
@@ -13,6 +14,7 @@ import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.login.LoginActivity
 import com.jeff.startproject.view.navigation.NavigationActivity
+import com.jeff.startproject.view.runtimeexec.RuntimeExecActivity
 import com.jeff.startproject.view.sample.SampleActivity
 import com.jeff.startproject.view.table.TableActivity
 import com.jeff.startproject.view.vector.VectorActivity
@@ -116,6 +118,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnDraw.setOnClickListener {
             Intent(this, DrawActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnAdbCmd.setOnClickListener {
+            Intent(this, AdbCmdActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnRuntimeExec.setOnClickListener {
+            Intent(this, RuntimeExecActivity::class.java).also {
                 startActivity(it)
             }
         }

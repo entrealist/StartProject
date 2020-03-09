@@ -19,4 +19,6 @@
     <string name="text_websocket">WebSocket</string>
     <string name="text_navigation">Navigation</string>
     <string name="text_draw">Draw</string>
+    <string name="text_adb_cmd">Adb cmd</string>
+    <string name="text_runtime_exec">Runtime exec</string>
 </resources>
