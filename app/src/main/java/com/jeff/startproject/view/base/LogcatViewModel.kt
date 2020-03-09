@@ -9,10 +9,16 @@ abstract class LogcatViewModel : BaseViewModel() {
 
     private val mStringBuilder = StringBuilder()
 
-    fun appendMessage(message: String?) {
+    fun appendMessage(message: String?, isPost: Boolean = false) {
         if (message != null) {
             mStringBuilder.appendln(message)
-            mRecordLog.value = mStringBuilder.toString()
+            mStringBuilder.toString().also {
+                if (isPost) {
+                    mRecordLog.postValue(it)
+                } else {
+                    mRecordLog.value = it
+                }
+            }
         }
     }
 }
