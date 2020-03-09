@@ -35,6 +35,7 @@
         <activity android:name=".view.chain.ChainActivity" />
         <activity android:name=".view.websocket.WebSocketActivity" />
         <activity android:name=".view.navigation.NavigationActivity" />
+        <activity android:name=".view.draw.DrawActivity" />
     </application>
 
 </manifest>

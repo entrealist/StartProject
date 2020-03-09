@@ -7,6 +7,7 @@ import com.jeff.startproject.databinding.ActivityMainBinding
 import com.jeff.startproject.view.base.BaseActivity
 import com.jeff.startproject.view.chain.ChainActivity
 import com.jeff.startproject.view.db.DbActivity
+import com.jeff.startproject.view.draw.DrawActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
@@ -109,6 +110,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnNavigation.setOnClickListener {
             Intent(this, NavigationActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnDraw.setOnClickListener {
+            Intent(this, DrawActivity::class.java).also {
                 startActivity(it)
             }
         }
