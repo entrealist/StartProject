@@ -4,6 +4,10 @@ import com.jeff.startproject.databinding.ActivityNavigationBinding
 import com.jeff.startproject.view.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+/*
+ * https://developer.android.com/guide/navigation
+ */
+
 class NavigationActivity: BaseActivity<ActivityNavigationBinding>() {
     override fun getViewBinding():ActivityNavigationBinding = ActivityNavigationBinding.inflate(layoutInflater)
 

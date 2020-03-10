@@ -15,7 +15,7 @@
         android:animateLayoutChanges="true"
         android:background="?attr/colorPrimary"
         android:fitsSystemWindows="true"
-        android:stateListAnimator="@animator/show_toolbar"
+        android:stateListAnimator="@animator/animator_toolbar"
         android:theme="@style/AppTheme">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -259,6 +259,26 @@
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
                     android:text="@string/text_navigation"
+                    android:textColor="@android:color/white"
+                    app:btn_corner_radius="standard"
+                    app:btn_pressed_color="@android:color/darker_gray"
+                    app:btn_solid_color="@android:color/black" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <com.yulichswift.roundedview.widget.RoundedTextView
+                    android:id="@+id/btn_file"
+                    style="@style/btn_size_14"
+                    android:layout_margin="20dp"
+                    android:text="@string/text_file"
                     android:textColor="@android:color/white"
                     app:btn_corner_radius="standard"
                     app:btn_pressed_color="@android:color/darker_gray"

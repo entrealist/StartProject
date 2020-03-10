@@ -43,7 +43,7 @@
     </target>
 
     <target
-        android:animation="@animator/ani_car_move"
+        android:animation="@animator/animator_car_move"
         android:name="all" />
 
 </animated-vector>
