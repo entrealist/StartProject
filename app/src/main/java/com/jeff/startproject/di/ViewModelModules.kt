@@ -1,6 +1,7 @@
 package com.jeff.startproject.di
 
 import com.jeff.startproject.view.db.DbViewModel
+import com.jeff.startproject.view.edittext.EditTextViewModel
 import com.jeff.startproject.view.eventbus.EventBusViewModel
 import com.jeff.startproject.view.flowcontrol.FlowControlViewModel
 import com.jeff.startproject.view.login.LoginViewModel
@@ -22,4 +23,5 @@ val viewModelModules = module {
     viewModel { LoginViewModel() }
     viewModel { WebSocketViewModel() }
     viewModel { NavigationViewModel() }
+    viewModel { EditTextViewModel() }
 }

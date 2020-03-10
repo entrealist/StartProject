@@ -1,23 +1,11 @@
 package com.jeff.startproject.view.edittext
 
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.EditText
+import com.jeff.startproject.utils.livedata.EditTextLiveDataListener
+import com.jeff.startproject.utils.livedata.TextWatcherUpdated
 import java.lang.StringBuilder
 import com.log.JFLog
 
-// val moneyFormat = NumberFormat.getCurrencyInstance(Locale.CHINA).format(money)
-class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
-
-    init {
-        editText.addTextChangedListener(this)
-    }
-
-    // TODO: 不建議使用
-    protected fun finalize() {
-        JFLog.d("GC")
-    }
-
+class CurrencyEditLiveDataListener : EditTextLiveDataListener {
     private var lastString = ""
     private var isRemoveDot = false
 
@@ -30,7 +18,12 @@ class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
         }
     }
 
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+    override fun onTextChanged(
+        s: CharSequence?,
+        start: Int,
+        before: Int,
+        count: Int
+    ): TextWatcherUpdated? {
         val startTime = System.currentTimeMillis()
 
         var selectionSupport = 0
@@ -72,42 +65,38 @@ class CurrencyTextWatcher(private val editText: EditText) : TextWatcher {
 
         val resultString = sb.toString()
 
-        if (s != null && !resultString.contentEquals(s)) {
-            editText.removeTextChangedListener(this)
-
-            // TODO: 未完成範圍刪除判斷游標
-            val sbLength = sb.length
-            val newSelectionStart =
-                (sbLength - lastString.length)
-                    .let {
-                        val startSel = start + count
-                        when {
-                            it > 1 -> startSel + 1
-                            it < -1 -> startSel - 1
-                            else -> startSel
+        when {
+            s != null && !resultString.contentEquals(s) -> {
+                // TODO: 未完成範圍刪除判斷游標
+                val sbLength = sb.length
+                val newSelectionStart =
+                    (sbLength - lastString.length)
+                        .let {
+                            val startSel = start + count
+                            when {
+                                it > 1 -> startSel + 1
+                                it < -1 -> startSel - 1
+                                else -> startSel
+                            }
+                        }.let {
+                            it + selectionSupport
+                        }.let {
+                            when {
+                                it < 0 -> 0
+                                it > sbLength -> sbLength
+                                else -> it
+                            }
                         }
-                    }.let {
-                        it + selectionSupport
-                    }.let {
-                        when {
-                            it < 0 -> 0
-                            it > sbLength -> sbLength
-                            else -> it
-                        }
-                    }
 
-            lastString = resultString
+                lastString = resultString
 
-            editText.setText(lastString)
-            editText.setSelection(newSelectionStart)
-
-            editText.addTextChangedListener(this)
+                TextWatcherUpdated(lastString, newSelectionStart)
+            }
+            else -> null
+        }.also {
+            JFLog.d("Spend: ${System.currentTimeMillis() - startTime} ns")
+            return it
         }
-
-        JFLog.d("Spend: ${System.currentTimeMillis() - startTime} ns")
-    }
-
-    override fun afterTextChanged(editable: Editable?) {
     }
 
     private val String.lastIndexOfDot: Int
