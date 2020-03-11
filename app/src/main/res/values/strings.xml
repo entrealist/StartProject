@@ -4,7 +4,7 @@
     <string name="text_flow">Flow</string>
     <string name="text_event_bus">Event bus</string>
     <string name="text_text_watcher">Text watcher</string>
-    <string name="text_table_recycler_view">Table (RecyclerView)</string>
+    <string name="text_table_recycler_view">RecyclerView (GitHub API)</string>
     <string name="text_sample">Sample</string>
     <string name="text_animation">Animation</string>
     <string name="text_join">Join</string>
@@ -17,8 +17,13 @@
     <string name="text_reset">Reset</string>
     <string name="text_chain">Chain</string>
     <string name="text_websocket">WebSocket</string>
-    <string name="text_navigation">Navigation</string>
+    <string name="text_navigation">Navigation Advanced</string>
     <string name="text_draw">Draw</string>
     <string name="text_adb_cmd">Adb cmd</string>
     <string name="text_runtime_exec">Runtime exec</string>
+    <string name="text_file">File</string>
+    <string name="text_start">Start</string>
+    <string name="text_finish">Finish</string>
+    <string name="text_processing">Processing</string>
+    <string name="message_file_not_found">File not found.</string>
 </resources>

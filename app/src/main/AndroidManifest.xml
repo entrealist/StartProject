@@ -4,6 +4,8 @@
     package="com.jeff.startproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -38,6 +40,7 @@
         <activity android:name=".view.draw.DrawActivity" />
         <activity android:name=".view.adbcmd.AdbCmdActivity" />
         <activity android:name=".view.runtimeexec.RuntimeExecActivity" />
+        <activity android:name=".view.file.FileActivity" />
     </application>
 
 </manifest>

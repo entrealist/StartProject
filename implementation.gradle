@@ -10,7 +10,6 @@ ext {
             room_version                : '2.2.4',
             paging_version              : "2.1.1",
             live_event_bus_version      : "1.5.2",
-            nav_version                 : "2.2.0-rc04",
             rxjava_version              : "2.2.10",
             rxkotlin_version            : "2.4.0",
             rxandroid_version           : "2.1.1",
@@ -37,6 +36,7 @@ ext {
             leakcanary_version          : "2.1",
             swipe_refresh_layout_version: "1.0.0",
             websocket_version           : "1.4.0",
+            nav_version                 : "2.3.0-alpha03",
     ]
 
     dependencies = [
@@ -116,5 +116,9 @@ ext {
 
             // WebSocket
             "websocket"           : "org.java-websocket:Java-WebSocket:${version["websocket_version"]}",
+
+            // Navigation
+            "navigation_fragment" : "androidx.navigation:navigation-fragment-ktx:${version["nav_version"]}",
+            "navigation_ui"       : "androidx.navigation:navigation-ui-ktx:${version["nav_version"]}",
     ]
 }

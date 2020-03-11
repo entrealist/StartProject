@@ -15,11 +15,11 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
         KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
     }
 
+    abstract fun getViewBinding(): B
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
     }
-
-    abstract fun getViewBinding(): B
 }

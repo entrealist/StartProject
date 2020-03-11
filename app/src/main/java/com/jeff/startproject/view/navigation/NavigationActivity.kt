@@ -6,6 +6,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /*
  * https://developer.android.com/guide/navigation
+ * https://developer.android.com/guide/navigation/navigation-pass-data
  */
 
 class NavigationActivity: BaseActivity<ActivityNavigationBinding>() {

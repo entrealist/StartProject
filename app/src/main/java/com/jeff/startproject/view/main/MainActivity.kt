@@ -11,6 +11,7 @@ import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.draw.DrawActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
+import com.jeff.startproject.view.file.FileActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.login.LoginActivity
 import com.jeff.startproject.view.navigation.NavigationActivity
@@ -30,11 +31,16 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  *
  * https://material.io/develop/android/components/material-card-view
  *
- * https://material.io/develop/android/components/material-button/
+ * https://material.io/develop/android/components/material-button
  *
+ * View binding:
  * https://developer.android.com/topic/libraries/view-binding
  *
+ * CollapsingToolbarLayout:
  * https://www.jianshu.com/p/c6a6d08f4a2b
+ *
+ * LiveData:
+ * https://juejin.im/post/5cdff0de5188252f5e019bea
  */
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -130,6 +136,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnRuntimeExec.setOnClickListener {
             Intent(this, RuntimeExecActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnFile.setOnClickListener {
+            Intent(this, FileActivity::class.java).also {
                 startActivity(it)
             }
         }
