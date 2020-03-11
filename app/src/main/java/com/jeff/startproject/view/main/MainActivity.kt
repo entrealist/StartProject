@@ -35,6 +35,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  *
  * View binding:
  * https://developer.android.com/topic/libraries/view-binding
+ * https://blog.csdn.net/u010976213/article/details/104501830
  *
  * CollapsingToolbarLayout:
  * https://www.jianshu.com/p/c6a6d08f4a2b

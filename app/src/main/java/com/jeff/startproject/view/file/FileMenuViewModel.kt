@@ -8,6 +8,7 @@ import com.jeff.startproject.MyApplication
 import com.jeff.startproject.R
 import com.jeff.startproject.utils.fileExtension
 import com.jeff.startproject.view.base.BaseViewModel
+import com.jeff.startproject.view.base.NavigateItem
 import com.log.JFLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -27,6 +28,15 @@ class FileMenuViewModel : BaseViewModel() {
 
     private val mBtnStartText = MutableLiveData(appContext.getString(R.string.text_start))
     val btnStartText: LiveData<String> = mBtnStartText
+
+    override fun navigateTo(item: NavigateItem) {
+        viewModelScope.launch {
+            // Can choose join or cancel
+            joinPreviousOrRun {
+                super.navigateTo(item)
+            }
+        }
+    }
 
     fun start() {
         viewModelScope.launch {
@@ -87,7 +97,7 @@ class FileMenuViewModel : BaseViewModel() {
                     fileRm.appendText(sbDel.toString())
                     JFLog.d("Finish: ${System.currentTimeMillis() - startTime} ns")
 
-                    delay(2000L)
+                    delay(5000L)
                     emit(true)
                 }
                     .flowOn(Dispatchers.IO)
@@ -108,13 +118,13 @@ class FileMenuViewModel : BaseViewModel() {
     fun resetFiles() {
         viewModelScope.launch {
             joinPreviousOrRun {
-                launch {
-                    File(dirPath).delete()
-                    File(mvPath).delete()
-                    File(rmPath).delete()
+                File(dirPath).delete()
+                File(mvPath).delete()
+                File(rmPath).delete()
 
-                    mBtnStartText.value = appContext.getString(R.string.text_start)
-                }
+                mBtnStartText.value = appContext.getString(R.string.text_start)
+
+                delay(1000L)
             }
         }
     }

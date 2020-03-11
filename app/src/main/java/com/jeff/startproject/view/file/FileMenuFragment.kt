@@ -10,6 +10,7 @@ import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileMenuBinding
 import com.jeff.startproject.view.base.BaseFragment
 import com.jeff.startproject.view.base.NavigateItem
+import com.jeff.startproject.view.diaglog.ConfirmDialogFragment
 import com.log.JFLog
 import kotlinx.android.synthetic.main.fragment_file_menu.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,6 +23,16 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentFileMenuBinding =
         FragmentFileMenuBinding.inflate(inflater, container, false)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel.waiting.observe(this, Observer {
+            if (it) {
+                ConfirmDialogFragment(getString(R.string.message_wait), false).show(parentFragmentManager, "Confirm")
+            }
+        })
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
