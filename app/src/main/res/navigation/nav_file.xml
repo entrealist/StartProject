@@ -13,11 +13,11 @@
         <action
             android:id="@+id/action_file_menu_to_content"
             app:destination="@id/fragment_content"
-            app:enterAnim="@anim/ani_enter"
-            app:exitAnim="@anim/ani_exit"
+            app:enterAnim="@anim/ani_slide_enter"
+            app:exitAnim="@anim/ani_slide_exit"
             app:launchSingleTop="true"
-            app:popEnterAnim="@anim/ani_pop_enter"
-            app:popExitAnim="@anim/ani_pop_exit" />
+            app:popEnterAnim="@anim/ani_slide_pop_enter"
+            app:popExitAnim="@anim/ani_slide_pop_exit" />
     </fragment>
 
     <fragment

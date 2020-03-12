@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.FragmentFileContentBinding
 import com.jeff.startproject.view.base.BaseFragment
+import com.jeff.startproject.view.base.NavigateItem
 import com.log.JFLog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,6 +30,10 @@ class FileContentFragment : BaseFragment<FragmentFileContentBinding>() {
 
         arguments?.getString("path")?.also {
             viewModel.readFile(it)
+        }
+
+        binding.toolbar.setNavigationOnClickListener {
+            viewModel.navigateTo(NavigateItem(0, null))
         }
     }
 

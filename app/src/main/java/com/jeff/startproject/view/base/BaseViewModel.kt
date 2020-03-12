@@ -22,8 +22,8 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
     private val mNavigateDestination by lazy { MutableLiveData<NavigateItem>() }
     val navigateDestination: LiveData<NavigateItem> get() = mNavigateDestination
 
-    private val mWaiting by lazy { MutableLiveData<Boolean>() }
-    val waiting: LiveData<Boolean> get() = mWaiting
+    private val mExistActiveTask by lazy { MutableLiveData<Boolean>() }
+    val existActiveTask: LiveData<Boolean> get() = mExistActiveTask
 
     private var activeTask: Deferred<Any>? = null
     private var navigationTask: Deferred<Any>? = null
@@ -83,7 +83,7 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
     protected suspend fun joinPreviousOrRun(block: suspend () -> Any): Any {
         // 如果當前有正在執行的 activeTask ，直接返回
         activeTask?.let {
-            mWaiting.postValue(true)
+            mExistActiveTask.postValue(true)
             return it.await()
         }
 

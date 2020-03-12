@@ -27,7 +27,7 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.waiting.observe(this, Observer {
+        viewModel.existActiveTask.observe(this, Observer {
             if (it) {
                 ConfirmDialogFragment(getString(R.string.message_wait), false).show(parentFragmentManager, "Confirm")
             }
