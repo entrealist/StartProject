@@ -40,7 +40,9 @@
         <activity android:name=".view.draw.DrawActivity" />
         <activity android:name=".view.adbcmd.AdbCmdActivity" />
         <activity android:name=".view.runtimeexec.RuntimeExecActivity" />
-        <activity android:name=".view.file.FileActivity" />
+        <activity
+            android:name=".view.file.FileActivity"
+            android:theme="@style/TranslucentTheme" />
     </application>
 
 </manifest>
