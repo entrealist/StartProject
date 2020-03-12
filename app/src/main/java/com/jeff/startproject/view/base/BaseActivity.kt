@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.kaopiz.kprogresshud.KProgressHUD
 
-abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<out B : ViewBinding> : AppCompatActivity() {
 
     val binding: B by lazy {
         getViewBinding()

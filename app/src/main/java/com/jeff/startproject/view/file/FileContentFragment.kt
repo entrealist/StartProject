@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileContentBinding
+import com.jeff.startproject.enums.ModelResult
 import com.jeff.startproject.view.base.BaseFragment
 import com.jeff.startproject.view.base.NavigateItem
 import com.log.JFLog
@@ -24,12 +26,31 @@ class FileContentFragment : BaseFragment<FragmentFileContentBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.content.observe(viewLifecycleOwner, Observer {
-            binding.tvContent.text = it
+        viewModel.result.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is ModelResult.Success -> {
+                    result.data
+                }
+                is ModelResult.Failure -> {
+                    result.data
+                }
+                else -> null
+            }?.also {
+                binding.tvContent.text = it
+            }
+
+            when (result) {
+                is ModelResult.Success -> R.color.silver
+                is ModelResult.Failure -> R.color.orange_red
+                ModelResult.Progressing -> R.color.pale_green
+                else -> 0
+            }.also {
+                binding.viewStatus.setBackgroundColor(resources.getColor(it, null))
+            }
         })
 
         arguments?.getString("path")?.also {
-            viewModel.readFile(it)
+            viewModel.readFile(it, true)
         }
 
         binding.toolbar.setNavigationOnClickListener {

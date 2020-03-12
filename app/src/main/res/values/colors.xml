@@ -3,4 +3,6 @@
     <color name="purple">#6600FF</color>
     <color name="pale_green">#98FB98</color>
     <color name="orange_red">#FF4500</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="transparent">#00000000</color>
 </resources>

@@ -12,7 +12,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseDialogFragment<B : ViewBinding> : AppCompatDialogFragment() {
+abstract class BaseDialogFragment<out B : ViewBinding> : AppCompatDialogFragment() {
 
     abstract fun isFullLayout(): Boolean
 

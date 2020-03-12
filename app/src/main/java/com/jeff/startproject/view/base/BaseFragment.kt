@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<B : ViewBinding> : Fragment() {
+abstract class BaseFragment<out B : ViewBinding> : Fragment() {
 
     private var mViewBinding: B? = null
     val binding: B get() = mViewBinding!!
