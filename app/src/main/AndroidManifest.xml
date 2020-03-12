@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".view.main.MainActivity">
+        <activity
+            android:name=".view.main.MainActivity"
+            android:theme="@style/TransparentBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -27,13 +29,19 @@
         </activity>
 
         <activity android:name=".view.eventbus.EventBusActivity" />
-        <activity android:name=".view.table.TableActivity" />
+        <activity
+            android:name=".view.table.TableActivity"
+            android:theme="@style/TransparentBarTheme" />
         <activity android:name=".view.edittext.EditTextActivity" />
         <activity android:name=".view.db.DbActivity" />
         <activity android:name=".view.flowcontrol.FlowControlActivity" />
         <activity android:name=".view.sample.SampleActivity" />
-        <activity android:name=".view.vector.VectorActivity" />
-        <activity android:name=".view.login.LoginActivity" />
+        <activity
+            android:name=".view.vector.VectorActivity"
+            android:theme="@style/TransparentBarTheme" />
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:theme="@style/TransparentBarTheme" />
         <activity android:name=".view.chain.ChainActivity" />
         <activity android:name=".view.websocket.WebSocketActivity" />
         <activity android:name=".view.navigation.NavigationActivity" />

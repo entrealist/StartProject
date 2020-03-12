@@ -1,6 +1,5 @@
 package com.jeff.startproject.view.table
 
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -21,8 +20,6 @@ class TableActivity : BaseActivity<ActivityTableBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        window.statusBarColor = Color.TRANSPARENT
 
         binding.toolbar.setNavigationOnClickListener {
             finish()

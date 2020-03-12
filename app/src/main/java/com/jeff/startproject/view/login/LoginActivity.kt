@@ -1,6 +1,5 @@
 package com.jeff.startproject.view.login
 
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -20,8 +19,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        window.statusBarColor = Color.TRANSPARENT
 
         setupToolBar()
         setupObserve()

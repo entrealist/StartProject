@@ -1,7 +1,6 @@
 package com.jeff.startproject.view.main
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import com.jeff.startproject.databinding.ActivityMainBinding
 import com.jeff.startproject.view.adbcmd.AdbCmdActivity
@@ -54,8 +53,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        window.statusBarColor = Color.TRANSPARENT
 
         binding.btnEventBus.setOnClickListener {
             Intent(this, EventBusActivity::class.java).also {

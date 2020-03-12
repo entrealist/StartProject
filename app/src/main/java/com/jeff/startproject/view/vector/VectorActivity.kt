@@ -1,6 +1,5 @@
 package com.jeff.startproject.view.vector
 
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import com.jeff.startproject.R
@@ -20,8 +19,6 @@ class VectorActivity : BaseActivity<ActivityVectorBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        window.statusBarColor = Color.TRANSPARENT
 
         binding.toolbar.setNavigationOnClickListener {
             finish()
