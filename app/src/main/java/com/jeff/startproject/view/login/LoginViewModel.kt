@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.jeff.startproject.model.sample.LoginUser
-import com.jeff.startproject.utils.livedata.EditTextLiveData
-import com.jeff.startproject.utils.livedata.EditTextMutableLiveData
-import com.jeff.startproject.view.base.BaseViewModel
+import com.utils.lifecycle.EditTextLiveData
+import com.utils.lifecycle.EditTextMutableLiveData
+import com.view.base.BaseViewModel
 import java.math.BigDecimal
 
 class LoginViewModel : BaseViewModel() {

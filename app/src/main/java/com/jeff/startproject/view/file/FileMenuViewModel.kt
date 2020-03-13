@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jeff.startproject.MyApplication
 import com.jeff.startproject.R
-import com.jeff.startproject.utils.fileExtension
-import com.jeff.startproject.view.base.BaseViewModel
-import com.jeff.startproject.view.base.NavigateItem
 import com.log.JFLog
+import com.utils.extension.fileExtension
+import com.view.base.BaseViewModel
+import com.view.base.NavigateItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*

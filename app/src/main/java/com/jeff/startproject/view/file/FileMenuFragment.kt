@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileMenuBinding
-import com.jeff.startproject.view.base.BaseFragment
-import com.jeff.startproject.view.base.NavigateItem
 import com.jeff.startproject.view.diaglog.ConfirmDialogFragment
 import com.log.JFLog
-import kotlinx.android.synthetic.main.fragment_file_menu.*
+import com.view.base.BaseFragment
+import com.view.base.NavigateItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
@@ -45,7 +44,7 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
             binding.btnStart.text = it
         })
 
-        btn_start.setOnClickListener {
+        binding.btnStart.setOnClickListener {
             viewModel.start()
         }
 

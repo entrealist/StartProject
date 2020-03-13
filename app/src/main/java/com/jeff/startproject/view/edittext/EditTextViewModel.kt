@@ -1,8 +1,8 @@
 package com.jeff.startproject.view.edittext
 
-import com.jeff.startproject.utils.livedata.PluginEditTextLiveData
-import com.jeff.startproject.utils.livedata.PluginEditTextMutableLiveData
-import com.jeff.startproject.view.base.BaseViewModel
+import com.utils.lifecycle.PluginEditTextLiveData
+import com.utils.lifecycle.PluginEditTextMutableLiveData
+import com.view.base.BaseViewModel
 
 class EditTextViewModel : BaseViewModel() {
     private val mPluginEditTextMutableLiveData = PluginEditTextMutableLiveData().also {

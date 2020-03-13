@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.jeff.startproject.dao.UserDao
 import com.jeff.startproject.model.db.DbResult
 import com.jeff.startproject.model.db.User
-import com.jeff.startproject.view.base.BaseViewModel
 import com.log.JFLog
+import com.view.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

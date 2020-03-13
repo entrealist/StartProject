@@ -4,8 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.jeff.startproject.databinding.ActivityAdbCmdBinding
-import com.jeff.startproject.view.base.BaseActivity
 import com.log.JFLog
+import com.view.base.BaseActivity
 
 class AdbCmdActivity : BaseActivity<ActivityAdbCmdBinding>() {
     override fun getViewBinding(): ActivityAdbCmdBinding {
@@ -20,6 +20,8 @@ class AdbCmdActivity : BaseActivity<ActivityAdbCmdBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        JFLog.d(filesDir.path)
 
         if (true) {
             // TODO: Work

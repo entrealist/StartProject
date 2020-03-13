@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.ActivityEditBinding
-import com.jeff.startproject.view.base.BaseActivity
 import com.log.JFLog
+import com.view.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 // (TextWatcher) https://developer.android.com/reference/android/text/TextWatcher.html

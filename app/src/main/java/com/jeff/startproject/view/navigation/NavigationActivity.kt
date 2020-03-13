@@ -1,7 +1,7 @@
 package com.jeff.startproject.view.navigation
 
 import com.jeff.startproject.databinding.ActivityNavigationBinding
-import com.jeff.startproject.view.base.BaseActivity
+import com.view.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /*

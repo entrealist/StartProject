@@ -1,5 +1,5 @@
 package com.jeff.startproject.view.main
 
-import com.jeff.startproject.view.base.BaseViewModel
+import com.view.base.BaseViewModel
 
 class MainViewModel : BaseViewModel()

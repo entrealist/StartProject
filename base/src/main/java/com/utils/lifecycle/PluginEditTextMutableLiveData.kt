@@ -1,6 +1,6 @@
-package com.jeff.startproject.utils.livedata
+package com.utils.lifecycle
 
-class EditTextMutableLiveData(value: String? = null) : EditTextLiveData(value) {
+class PluginEditTextMutableLiveData(value: String? = null) : PluginEditTextLiveData(value) {
 
     public override fun setValue(value: String?) {
         super.setValue(value)

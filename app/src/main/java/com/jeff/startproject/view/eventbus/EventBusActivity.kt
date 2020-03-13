@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.ActivityEventBusBinding
-import com.jeff.startproject.view.base.BaseActivity
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.log.JFLog
+import com.view.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList

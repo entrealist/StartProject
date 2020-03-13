@@ -1,4 +1,4 @@
-package com.jeff.startproject.utils
+package com.utils.extension
 
 import android.graphics.drawable.Animatable2
 import android.graphics.drawable.AnimatedVectorDrawable

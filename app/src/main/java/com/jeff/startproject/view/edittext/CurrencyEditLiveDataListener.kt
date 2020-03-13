@@ -1,9 +1,8 @@
 package com.jeff.startproject.view.edittext
 
-import com.jeff.startproject.utils.livedata.EditTextLiveDataListener
-import com.jeff.startproject.utils.livedata.TextWatcherUpdated
-import java.lang.StringBuilder
 import com.log.JFLog
+import com.utils.lifecycle.EditTextLiveDataListener
+import com.utils.lifecycle.TextWatcherUpdated
 
 class CurrencyEditLiveDataListener : EditTextLiveDataListener {
     private var lastString = ""

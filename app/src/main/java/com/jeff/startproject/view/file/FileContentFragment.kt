@@ -9,9 +9,9 @@ import androidx.lifecycle.Observer
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileContentBinding
 import com.jeff.startproject.enums.ModelResult
-import com.jeff.startproject.view.base.BaseFragment
-import com.jeff.startproject.view.base.NavigateItem
 import com.log.JFLog
+import com.view.base.BaseFragment
+import com.view.base.NavigateItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FileContentFragment : BaseFragment<FragmentFileContentBinding>() {

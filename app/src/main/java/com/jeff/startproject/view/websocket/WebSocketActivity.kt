@@ -5,7 +5,7 @@ import androidx.lifecycle.Observer
 import com.jeff.startproject.BuildConfig
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityWebsocketBinding
-import com.jeff.startproject.view.base.BaseActivity
+import com.view.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WebSocketActivity : BaseActivity<ActivityWebsocketBinding>() {

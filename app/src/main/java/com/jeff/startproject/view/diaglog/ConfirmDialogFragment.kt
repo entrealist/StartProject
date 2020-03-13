@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jeff.startproject.databinding.DialogConfirmBinding
-import com.jeff.startproject.view.base.BaseDialogFragment
+import com.view.base.BaseDialogFragment
 
 class ConfirmDialogFragment(
     private val initMessage: String? = null,

@@ -2,6 +2,7 @@ package com.jeff.startproject.view.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.view.base.BaseViewModel
 
 abstract class LogcatViewModel : BaseViewModel() {
     private val mRecordLog by lazy { MutableLiveData<String>() }

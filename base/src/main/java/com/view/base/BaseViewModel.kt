@@ -1,4 +1,4 @@
-package com.jeff.startproject.view.base
+package com.view.base
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData

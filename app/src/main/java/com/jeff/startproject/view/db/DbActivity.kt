@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.ActivityDbBinding
 import com.jeff.startproject.model.db.User
-import com.jeff.startproject.view.base.BaseActivity
+import com.view.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DbActivity : BaseActivity<ActivityDbBinding>() {

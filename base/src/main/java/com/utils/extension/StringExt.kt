@@ -1,4 +1,4 @@
-package com.jeff.startproject.utils
+package com.utils.extension
 
 /**
  * Return contain '.'

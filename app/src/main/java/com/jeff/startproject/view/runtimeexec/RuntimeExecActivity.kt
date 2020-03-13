@@ -2,8 +2,8 @@ package com.jeff.startproject.view.runtimeexec
 
 import android.os.Bundle
 import com.jeff.startproject.databinding.ActivityRuntimeExecBinding
-import com.jeff.startproject.view.base.BaseActivity
 import com.log.JFLog
+import com.view.base.BaseActivity
 import java.io.*
 
 class RuntimeExecActivity : BaseActivity<ActivityRuntimeExecBinding>() {

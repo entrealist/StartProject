@@ -1,5 +1,5 @@
 package com.jeff.startproject.view.eventbus
 
-import com.jeff.startproject.view.base.BaseViewModel
+import com.view.base.BaseViewModel
 
 class EventBusViewModel : BaseViewModel()

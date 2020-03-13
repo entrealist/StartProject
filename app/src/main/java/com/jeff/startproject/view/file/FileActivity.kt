@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.jeff.startproject.databinding.ActivityFileBinding
-import com.jeff.startproject.view.base.BaseActivity
+import com.view.base.BaseActivity
 
 class FileActivity : BaseActivity<ActivityFileBinding>() {
 

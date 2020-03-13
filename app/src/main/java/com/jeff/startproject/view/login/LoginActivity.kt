@@ -5,8 +5,8 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityLoginBinding
-import com.jeff.startproject.utils.repeatAnimation
-import com.jeff.startproject.view.base.BaseActivity
+import com.utils.extension.repeatAnimation
+import com.view.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {

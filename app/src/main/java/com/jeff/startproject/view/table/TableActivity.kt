@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityTableBinding
-import com.jeff.startproject.view.base.BaseActivity
+import com.view.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TableActivity : BaseActivity<ActivityTableBinding>() {

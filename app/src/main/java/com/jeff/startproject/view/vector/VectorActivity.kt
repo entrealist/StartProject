@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.widget.Toast
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityVectorBinding
-import com.jeff.startproject.utils.repeatAnimation
-import com.jeff.startproject.view.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_vector.*
+import com.utils.extension.repeatAnimation
+import com.view.base.BaseActivity
 
 /*
  * https://shapeshifter.design
@@ -34,9 +33,9 @@ class VectorActivity : BaseActivity<ActivityVectorBinding>() {
             }
         }
 
-        binding.toolbar.navigationIcon?.repeatAnimation(toolbar)
+        binding.toolbar.navigationIcon?.repeatAnimation(binding.toolbar)
 
-        iv_smile.repeatAnimation()
-        iv_car.repeatAnimation()
+        binding.ivSmile.repeatAnimation()
+        binding.ivCar.repeatAnimation()
     }
 }

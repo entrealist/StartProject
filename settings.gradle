@@ -1,2 +1,3 @@
+rootProject.name = 'StartProject'
 include ':app'
-rootProject.name='StartProject'
+include ':base'
