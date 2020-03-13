@@ -7,6 +7,6 @@ import com.view.base.BaseActivity
 abstract class ProgressActivity<out B : ViewBinding> : BaseActivity<B>() {
 
     val progressHUD: KProgressHUD by lazy {
-        KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+        KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setCancellable(false)
     }
 }

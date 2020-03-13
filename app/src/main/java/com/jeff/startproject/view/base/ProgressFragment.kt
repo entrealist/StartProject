@@ -2,11 +2,11 @@ package com.jeff.startproject.view.base
 
 import androidx.viewbinding.ViewBinding
 import com.kaopiz.kprogresshud.KProgressHUD
-import com.view.base.BaseActivity
+import com.view.base.BaseFragment
 
-abstract class ProgressFragment<out B : ViewBinding> : BaseActivity<B>() {
+abstract class ProgressFragment<out B : ViewBinding> : BaseFragment<B>() {
 
     val progressHUD: KProgressHUD by lazy {
-        KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+        KProgressHUD.create(activity).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setCancellable(false)
     }
 }
