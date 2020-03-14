@@ -9,10 +9,7 @@ import com.jeff.startproject.enums.ModelResult
 import com.view.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -46,7 +43,11 @@ class FileContentViewModel : BaseViewModel() {
             }
                 .flowOn(Dispatchers.IO)
                 .onStart {
+                    mProcessing.value = true
                     mStatus.value = ModelResult.Progressing
+                }
+                .onCompletion {
+                    mProcessing.value = false
                 }
                 .collect {
                     mStatus.value = it

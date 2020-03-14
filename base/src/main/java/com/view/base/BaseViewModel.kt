@@ -8,7 +8,10 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 
-data class NavigateItem(val action: Int, val bundle: Bundle?)
+sealed class NavigateItem {
+    object Back : NavigateItem()
+    data class Destination(val action: Int, val bundle: Bundle?) : NavigateItem()
+}
 
 /*
  * val

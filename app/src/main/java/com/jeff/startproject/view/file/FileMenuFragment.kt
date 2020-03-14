@@ -14,7 +14,7 @@ import com.view.base.BaseFragment
 import com.view.base.NavigateItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
+class FileMenuFragment : BaseFragment<FragmentFileMenuBinding, FileMenuViewModel>() {
 
     val viewModel by viewModel<FileMenuViewModel>()
 
@@ -36,10 +36,6 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.processing.observe(viewLifecycleOwner, Observer {
-
-        })
-
         viewModel.btnStartText.observe(viewLifecycleOwner, Observer {
             binding.btnStart.text = it
         })
@@ -60,7 +56,7 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
                 bundle.putString("path", path)
             }
 
-            viewModel.navigateTo(NavigateItem(R.id.action_file_menu_to_content, bundle))
+            viewModel.navigateTo(NavigateItem.Destination(R.id.action_file_menu_to_content, bundle))
         }
         binding.btnOpen1.setOnClickListener(clickListener)
         binding.btnOpen2.setOnClickListener(clickListener)

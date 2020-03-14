@@ -9,12 +9,12 @@ import androidx.lifecycle.Observer
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileContentBinding
 import com.jeff.startproject.enums.ModelResult
+import com.jeff.startproject.view.base.ProgressFragment
 import com.log.JFLog
-import com.view.base.BaseFragment
 import com.view.base.NavigateItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FileContentFragment : BaseFragment<FragmentFileContentBinding>() {
+class FileContentFragment : ProgressFragment<FragmentFileContentBinding, FileContentViewModel>() {
 
     val viewModel by viewModel<FileContentViewModel>()
 
@@ -42,7 +42,7 @@ class FileContentFragment : BaseFragment<FragmentFileContentBinding>() {
             when (result) {
                 is ModelResult.Success -> R.color.silver
                 is ModelResult.Failure -> R.color.orange_red
-                ModelResult.Progressing -> R.color.pale_green
+                ModelResult.Progressing -> R.color.black
                 else -> 0
             }.also {
                 binding.viewStatus.setBackgroundColor(resources.getColor(it, null))
@@ -54,7 +54,7 @@ class FileContentFragment : BaseFragment<FragmentFileContentBinding>() {
         }
 
         binding.toolbar.setNavigationOnClickListener {
-            viewModel.navigateTo(NavigateItem(0, null))
+            viewModel.navigateTo(NavigateItem.Back)
         }
     }
 

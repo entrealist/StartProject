@@ -9,24 +9,29 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<out B : ViewBinding> : Fragment() {
+abstract class BaseFragment<out B : ViewBinding, out VM : BaseViewModel> : Fragment() {
 
     private var mViewBinding: B? = null
     val binding: B get() = mViewBinding!!
 
     abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): B
 
-    abstract fun fetchViewModel(): BaseViewModel?
+    abstract fun fetchViewModel(): VM?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         fetchViewModel()?.navigateDestination?.observe(this, Observer { item ->
             findNavController().also { navController ->
-                when {
-                    item.action == 0 -> navController.navigateUp() //.popBackStack()
-                    item.bundle != null -> navController.navigate(item.action, item.bundle)
-                    else -> navController.navigate(item.action)
+                when (item) {
+                    NavigateItem.Back -> navController.navigateUp() //.popBackStack()
+                    is NavigateItem.Destination -> {
+                        if (item.bundle == null) {
+                            navController.navigate(item.action)
+                        } else {
+                            navController.navigate(item.action, item.bundle)
+                        }
+                    }
                 }
             }
         })
