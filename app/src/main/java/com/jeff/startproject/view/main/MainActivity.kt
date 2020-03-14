@@ -13,6 +13,7 @@ import com.jeff.startproject.view.file.FileActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.login.LoginActivity
 import com.jeff.startproject.view.navigation.NavigationActivity
+import com.jeff.startproject.view.pager.PagerActivity
 import com.jeff.startproject.view.runtimeexec.RuntimeExecActivity
 import com.jeff.startproject.view.sample.SampleActivity
 import com.jeff.startproject.view.table.TableActivity
@@ -140,6 +141,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnFile.setOnClickListener {
             Intent(this, FileActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnPager.setOnClickListener {
+            Intent(this, PagerActivity::class.java).also {
                 startActivity(it)
             }
         }

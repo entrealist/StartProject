@@ -28,6 +28,7 @@
     <string name="text_processing">Processing</string>
     <string name="text_ok">OK</string>
     <string name="text_share">Share</string>
+    <string name="text_viewpager2">ViewPager2</string>
 
     <string name="message_file_not_found">File not found.</string>
     <string name="message_wait">Wait a second.</string>
