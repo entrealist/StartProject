@@ -24,7 +24,8 @@ abstract class BaseFragment<out B : ViewBinding, out VM : BaseViewModel> : Fragm
         fetchViewModel()?.navigateDestination?.observe(this, Observer { item ->
             findNavController().also { navController ->
                 when (item) {
-                    NavigateItem.Back -> navController.navigateUp() //.popBackStack()
+                    NavigateItem.Up -> navController.navigateUp() //.popBackStack()
+                    is NavigateItem.PopBackStack -> navController.popBackStack(item.fragmentId, item.inclusive)
                     is NavigateItem.Destination -> {
                         if (item.bundle == null) {
                             navController.navigate(item.action)

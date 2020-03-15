@@ -9,7 +9,8 @@ import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 
 sealed class NavigateItem {
-    object Back : NavigateItem()
+    object Up : NavigateItem()
+    data class PopBackStack(val fragmentId: Int, val inclusive: Boolean) : NavigateItem()
     data class Destination(val action: Int, val bundle: Bundle?) : NavigateItem()
 }
 

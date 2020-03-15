@@ -32,4 +32,5 @@
 
     <string name="message_file_not_found">File not found.</string>
     <string name="message_wait">Wait a second.</string>
+    <string name="message_back_disable">Back button disable.</string>
 </resources>

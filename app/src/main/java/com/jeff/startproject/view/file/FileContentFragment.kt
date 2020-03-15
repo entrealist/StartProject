@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileContentBinding
 import com.jeff.startproject.enums.ModelResult
 import com.jeff.startproject.view.base.ProgressFragment
+import com.jeff.startproject.view.diaglog.ConfirmDialogFragment
 import com.log.JFLog
 import com.view.base.NavigateItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,6 +27,11 @@ class FileContentFragment : ProgressFragment<FragmentFileContentBinding, FileCon
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
+            // Handle the back button event
+            ConfirmDialogFragment(getString(R.string.message_back_disable), false).show(parentFragmentManager, "Confirm")
+        }
 
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
@@ -54,7 +61,7 @@ class FileContentFragment : ProgressFragment<FragmentFileContentBinding, FileCon
         }
 
         binding.toolbar.setNavigationOnClickListener {
-            viewModel.navigateTo(NavigateItem.Back)
+            viewModel.navigateTo(NavigateItem.Up)
         }
     }
 
