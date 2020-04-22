@@ -43,11 +43,11 @@ class FileContentViewModel : BaseViewModel() {
             }
                 .flowOn(Dispatchers.IO)
                 .onStart {
-                    mProcessing.value = true
+                    updateProcessing(true)
                     mStatus.value = ModelResult.Progressing
                 }
                 .onCompletion {
-                    mProcessing.value = false
+                    updateProcessing(false)
                 }
                 .collect {
                     mStatus.value = it

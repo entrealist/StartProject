@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileMenuBinding
 import com.jeff.startproject.view.diaglog.ConfirmDialogFragment
 import com.log.JFLog
 import com.view.base.BaseFragment
 import com.view.base.NavigateItem
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FileMenuFragment : BaseFragment<FragmentFileMenuBinding, FileMenuViewModel>() {
@@ -22,6 +24,14 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding, FileMenuViewModel
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentFileMenuBinding =
         FragmentFileMenuBinding.inflate(inflater, container, false)
+
+    override fun navigateTo(item: NavigateItem) {
+        lifecycleScope.launch {
+            viewModel.joinPreviousOrRun {
+                super.navigateTo(item)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +66,7 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding, FileMenuViewModel
                 bundle.putString("path", path)
             }
 
-            viewModel.navigateTo(NavigateItem.Destination(R.id.action_file_menu_to_content, bundle))
+            navigateTo(NavigateItem.Destination(R.id.action_file_menu_to_content, bundle))
         }
         binding.btnOpen1.setOnClickListener(clickListener)
         binding.btnOpen2.setOnClickListener(clickListener)

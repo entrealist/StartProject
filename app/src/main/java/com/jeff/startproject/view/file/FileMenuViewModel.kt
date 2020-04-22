@@ -9,7 +9,6 @@ import com.jeff.startproject.R
 import com.log.JFLog
 import com.utils.extension.fileExtension
 import com.view.base.BaseViewModel
-import com.view.base.NavigateItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -28,15 +27,6 @@ class FileMenuViewModel : BaseViewModel() {
 
     private val mBtnStartText = MutableLiveData(appContext.getString(R.string.text_start))
     val btnStartText: LiveData<String> = mBtnStartText
-
-    override fun navigateTo(item: NavigateItem) {
-        viewModelScope.launch {
-            // Can choose join or cancel
-            joinPreviousOrRun {
-                super.navigateTo(item)
-            }
-        }
-    }
 
     fun start() {
         viewModelScope.launch {
@@ -102,11 +92,11 @@ class FileMenuViewModel : BaseViewModel() {
                 }
                     .flowOn(Dispatchers.IO)
                     .onStart {
-                        mProcessing.value = true
+                        updateProcessing(true)
                         mBtnStartText.value = appContext.getString(R.string.text_processing)
                     }
                     .onCompletion {
-                        mProcessing.value = false
+                        updateProcessing(false)
                         mBtnStartText.value = appContext.getString(R.string.text_finish)
                     }
                     .collect {

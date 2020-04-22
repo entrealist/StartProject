@@ -61,7 +61,7 @@ class FileContentFragment : ProgressFragment<FragmentFileContentBinding, FileCon
         }
 
         binding.toolbar.setNavigationOnClickListener {
-            viewModel.navigateTo(NavigateItem.Up)
+            navigateTo(NavigateItem.Up)
         }
     }
 

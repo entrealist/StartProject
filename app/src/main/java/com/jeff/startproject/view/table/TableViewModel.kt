@@ -41,11 +41,11 @@ class TableViewModel : BaseViewModel() {
 
     private val callback = object : PagingCallback {
         override fun onLoading() {
-            mProcessing.postValue(true)
+            updateProcessing(true)
         }
 
         override fun onLoaded() {
-            mProcessing.postValue(false)
+            updateProcessing(false)
         }
 
         override fun onTotalCount(count: Int) {
