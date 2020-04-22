@@ -33,7 +33,7 @@ abstract class BaseFragment<out B : ViewBinding, out VM : BaseViewModel> : Fragm
     }
 
     open fun navigateTo(item: NavigateItem) {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             navigationTaskJoinOrRun {
                 findNavController().also { navController ->
                     when (item) {
