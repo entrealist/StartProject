@@ -39,6 +39,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  *
  * CollapsingToolbarLayout:
  * https://www.jianshu.com/p/c6a6d08f4a2b
+ * https://www.itread01.com/content/1549919007.html
+ * app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways"
  *
  * LiveData:
  * https://juejin.im/post/5cdff0de5188252f5e019bea
