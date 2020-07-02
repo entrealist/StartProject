@@ -12,7 +12,7 @@ import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ItemUserInfoBinding
-import com.jeff.startproject.model.api.user.UserItem
+import com.jeff.startproject.model.api.vo.UserItem
 import com.jeff.startproject.view.table.viewholder.UserInfoViewHolder
 import com.log.JFLog
 

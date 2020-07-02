@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.jeff.startproject.model.api.ApiRepository
-import com.jeff.startproject.model.api.user.UserItem
+import com.jeff.startproject.model.api.vo.UserItem
 import com.jeff.startproject.view.table.paging.PagingCallback
 import com.jeff.startproject.view.table.paging.UserDataSource
 import com.jeff.startproject.view.table.paging.UserFactory

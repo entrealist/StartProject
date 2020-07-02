@@ -8,12 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.utils.lifecycle.autoCleared
 import kotlinx.coroutines.*
 
 abstract class BaseFragment<out B : ViewBinding, out VM : BaseViewModel> : Fragment() {
 
-    private var mViewBinding: B? = null
-    val binding: B get() = mViewBinding!!
+    private var _viewBinding by autoCleared<B>()
+    val binding: B get() = _viewBinding
 
     abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): B
 
@@ -21,15 +22,9 @@ abstract class BaseFragment<out B : ViewBinding, out VM : BaseViewModel> : Fragm
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return getViewBinding(inflater, container).run {
-            mViewBinding = this
+            _viewBinding = this
             root
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        mViewBinding = null
     }
 
     open fun navigateTo(item: NavigateItem) {

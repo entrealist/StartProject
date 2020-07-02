@@ -1,4 +1,4 @@
-package com.jeff.startproject.model.api.user
+package com.jeff.startproject.model.api.vo
 
 import com.google.gson.annotations.SerializedName
 

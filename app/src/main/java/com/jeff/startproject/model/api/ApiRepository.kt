@@ -1,7 +1,7 @@
 package com.jeff.startproject.model.api
 
-import com.jeff.startproject.model.api.user.UserDetailItem
-import com.jeff.startproject.model.api.user.UserItem
+import com.jeff.startproject.model.api.vo.UserDetailItem
+import com.jeff.startproject.model.api.vo.UserItem
 import retrofit2.Response
 
 class ApiRepository(private val apiService: ApiService) {

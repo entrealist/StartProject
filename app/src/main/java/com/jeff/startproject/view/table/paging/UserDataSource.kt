@@ -3,7 +3,7 @@ package com.jeff.startproject.view.table.paging
 import android.webkit.URLUtil
 import androidx.paging.PageKeyedDataSource
 import com.jeff.startproject.model.api.ApiRepository
-import com.jeff.startproject.model.api.user.UserItem
+import com.jeff.startproject.model.api.vo.UserItem
 import com.jeff.startproject.view.table.paging.ResponseUtil.Companion.HEADER_KEY_LINK
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
