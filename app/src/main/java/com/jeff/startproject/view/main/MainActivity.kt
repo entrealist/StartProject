@@ -17,7 +17,6 @@ import com.jeff.startproject.view.navigation.NavigationActivity
 import com.jeff.startproject.view.pager.PagerActivity
 import com.jeff.startproject.view.runtimeexec.RuntimeExecActivity
 import com.jeff.startproject.view.sample.SampleActivity
-import com.jeff.startproject.view.table.TableActivity
 import com.jeff.startproject.view.vector.VectorActivity
 import com.jeff.startproject.view.websocket.WebSocketActivity
 import com.view.base.BaseActivity
@@ -59,12 +58,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnEventBus.setOnClickListener {
             Intent(this, EventBusActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-
-        binding.btnTable.setOnClickListener {
-            Intent(this, TableActivity::class.java).also {
                 startActivity(it)
             }
         }
