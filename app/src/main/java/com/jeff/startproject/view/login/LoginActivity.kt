@@ -2,16 +2,16 @@ package com.jeff.startproject.view.login
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityLoginBinding
 import com.utils.extension.repeatAnimation
 import com.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
-    private val viewModel by viewModel<LoginViewModel>()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun getViewBinding(): ActivityLoginBinding {
         return ActivityLoginBinding.inflate(layoutInflater)

@@ -1,20 +1,20 @@
 package com.jeff.startproject.view.navigation
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityNavigationBinding
 import com.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /*
  * https://developer.android.com/guide/navigation
  * https://developer.android.com/guide/navigation/navigation-pass-data
  */
 
-class NavigationActivity: BaseActivity<ActivityNavigationBinding>() {
-    override fun getViewBinding():ActivityNavigationBinding = ActivityNavigationBinding.inflate(layoutInflater)
+class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
+    override fun getViewBinding(): ActivityNavigationBinding = ActivityNavigationBinding.inflate(layoutInflater)
 
-    private val viewModel by viewModel<NavigationViewModel>()
+    private val viewModel: NavigationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

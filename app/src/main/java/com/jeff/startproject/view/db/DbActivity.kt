@@ -1,15 +1,15 @@
 package com.jeff.startproject.view.db
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.ActivityDbBinding
 import com.jeff.startproject.model.db.User
 import com.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DbActivity : BaseActivity<ActivityDbBinding>() {
 
-    private val viewModel by viewModel<DbViewModel>()
+    private val viewModel: DbViewModel by viewModels()
 
     override fun getViewBinding(): ActivityDbBinding {
         return ActivityDbBinding.inflate(layoutInflater)

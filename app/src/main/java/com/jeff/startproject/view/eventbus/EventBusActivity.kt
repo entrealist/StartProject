@@ -2,12 +2,12 @@ package com.jeff.startproject.view.eventbus
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.ActivityEventBusBinding
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.log.JFLog
 import com.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.random.Random
@@ -20,7 +20,7 @@ import kotlin.random.Random
 
 class EventBusActivity : BaseActivity<ActivityEventBusBinding>() {
 
-    private val viewModel by viewModel<EventBusViewModel>()
+    private val viewModel: EventBusViewModel by viewModels()
 
     override fun getViewBinding(): ActivityEventBusBinding {
         return ActivityEventBusBinding.inflate(layoutInflater)

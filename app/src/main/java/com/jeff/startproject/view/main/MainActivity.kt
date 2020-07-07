@@ -2,6 +2,7 @@ package com.jeff.startproject.view.main
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.jeff.startproject.databinding.ActivityMainBinding
 import com.jeff.startproject.view.adbcmd.AdbCmdActivity
 import com.jeff.startproject.view.chain.ChainActivity
@@ -20,7 +21,6 @@ import com.jeff.startproject.view.table.TableActivity
 import com.jeff.startproject.view.vector.VectorActivity
 import com.jeff.startproject.view.websocket.WebSocketActivity
 import com.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /*
  * https://developer.android.google.cn/kotlin/ktx
@@ -48,7 +48,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private val viewModel by viewModel<MainViewModel>()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun getViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)

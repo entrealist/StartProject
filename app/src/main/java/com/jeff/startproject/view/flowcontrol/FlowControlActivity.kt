@@ -1,14 +1,14 @@
 package com.jeff.startproject.view.flowcontrol
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.ActivityFlowControlBinding
 import com.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FlowControlActivity : BaseActivity<ActivityFlowControlBinding>() {
 
-    private val viewModel by viewModel<FlowControlViewModel>()
+    private val viewModel: FlowControlViewModel by viewModels()
 
     override fun getViewBinding(): ActivityFlowControlBinding {
         return ActivityFlowControlBinding.inflate(layoutInflater)

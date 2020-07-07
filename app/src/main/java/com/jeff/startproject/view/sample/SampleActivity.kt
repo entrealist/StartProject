@@ -1,16 +1,16 @@
 package com.jeff.startproject.view.sample
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.ActivitySampleBinding
 import com.jeff.startproject.enums.ModelResult
 import com.log.JFLog
 import com.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SampleActivity : BaseActivity<ActivitySampleBinding>() {
 
-    private val viewModel by viewModel<SampleViewModel>()
+    private val viewModel: SampleViewModel by viewModels()
 
     override fun getViewBinding(): ActivitySampleBinding {
         return ActivitySampleBinding.inflate(layoutInflater)

@@ -2,17 +2,17 @@ package com.jeff.startproject.view.table
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityTableBinding
 import com.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TableActivity : BaseActivity<ActivityTableBinding>() {
 
-    private val viewModel by viewModel<TableViewModel>()
+    private val viewModel: TableViewModel by viewModels()
 
     override fun getViewBinding(): ActivityTableBinding {
         return ActivityTableBinding.inflate(layoutInflater)

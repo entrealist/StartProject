@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.jeff.startproject.R
@@ -14,11 +15,10 @@ import com.log.JFLog
 import com.view.base.BaseFragment
 import com.view.base.NavigateItem
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FileMenuFragment : BaseFragment<FragmentFileMenuBinding, FileMenuViewModel>() {
 
-    val viewModel by viewModel<FileMenuViewModel>()
+    val viewModel: FileMenuViewModel by viewModels()
 
     override fun fetchViewModel() = viewModel
 
