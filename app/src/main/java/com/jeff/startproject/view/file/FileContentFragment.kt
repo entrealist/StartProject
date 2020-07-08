@@ -36,26 +36,28 @@ class FileContentFragment : ProgressFragment<FragmentFileContentBinding, FileCon
             )
         }
 
-        viewModel.result.observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                is ModelResult.Success -> {
-                    result.data
+        viewModel.status.observe(viewLifecycleOwner, Observer { event ->
+            event.getContentIfNotHandled()?.also { result ->
+                when (result) {
+                    is ModelResult.Success -> {
+                        result.data
+                    }
+                    is ModelResult.Failure -> {
+                        result.throwable.localizedMessage
+                    }
+                    else -> null
+                }?.also {
+                    binding.tvContent.text = it
                 }
-                is ModelResult.Failure -> {
-                    result.data
-                }
-                else -> null
-            }?.also {
-                binding.tvContent.text = it
-            }
 
-            when (result) {
-                is ModelResult.Success -> R.color.silver
-                is ModelResult.Failure -> R.color.orange_red
-                ModelResult.Progressing -> R.color.black
-                else -> 0
-            }.also {
-                binding.viewStatus.setBackgroundColor(resources.getColor(it, null))
+                when (result) {
+                    is ModelResult.Success -> R.color.silver
+                    is ModelResult.Failure -> R.color.orange_red
+                    ModelResult.Loading -> R.color.black
+                    else -> null
+                }?.also {
+                    binding.viewStatus.setBackgroundColor(resources.getColor(it, null))
+                }
             }
         })
 

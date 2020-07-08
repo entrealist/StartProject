@@ -33,19 +33,19 @@ class SampleActivity : BaseActivity<ActivitySampleBinding>() {
             transformResult(it)
         }
 
-        ModelResult.Error.GeneralError(Exception("Help!")).also {
+        ModelResult.Failure(Exception("Help!")).also {
             handleStringResult(it)
             handleIntResult(it)
             transformResult(it)
         }
 
-        ModelResult.Error.RuntimeError(RuntimeException("Crash!")).also {
+        ModelResult.Failure(RuntimeException("Crash!")).also {
             handleStringResult(it)
             handleIntResult(it)
             transformResult(it)
         }
 
-        ModelResult.Progressing.also {
+        ModelResult.Loading.also {
             handleStringResult(it)
             handleIntResult(it)
             transformResult(it)
@@ -59,18 +59,13 @@ class SampleActivity : BaseActivity<ActivitySampleBinding>() {
                     viewModel.appendMessage(it)
                 }
             }
-            is ModelResult.Error.GeneralError -> {
-                JFLog.e("General error: ${modelResult.exception.message}").also {
+            is ModelResult.Failure -> {
+                JFLog.e("Failure: ${modelResult.throwable.message}").also {
                     viewModel.appendMessage(it)
                 }
             }
-            is ModelResult.Error.RuntimeError -> {
-                JFLog.e("Runtime error: ${modelResult.exception.message}").also {
-                    viewModel.appendMessage(it)
-                }
-            }
-            ModelResult.Progressing -> {
-                JFLog.d("Progressing").also {
+            ModelResult.Loading -> {
+                JFLog.d("Loading").also {
                     viewModel.appendMessage(it)
                 }
             }
@@ -84,18 +79,13 @@ class SampleActivity : BaseActivity<ActivitySampleBinding>() {
                     viewModel.appendMessage(it)
                 }
             }
-            is ModelResult.Error.GeneralError -> {
-                JFLog.e("General error: ${modelResult.exception.message}").also {
+            is ModelResult.Failure -> {
+                JFLog.e("Failure: ${modelResult.throwable.message}").also {
                     viewModel.appendMessage(it)
                 }
             }
-            is ModelResult.Error.RuntimeError -> {
-                JFLog.e("Runtime error: ${modelResult.exception.message}").also {
-                    viewModel.appendMessage(it)
-                }
-            }
-            ModelResult.Progressing -> {
-                JFLog.d("Progressing").also {
+            ModelResult.Loading -> {
+                JFLog.d("Loading").also {
                     viewModel.appendMessage(it)
                 }
             }
@@ -115,10 +105,11 @@ class SampleActivity : BaseActivity<ActivitySampleBinding>() {
 
     private val <T> T.transform: String
         get() = when (this) {
-            is ModelResult.Success<Any> -> "Success"
-            is ModelResult.Error.GeneralError -> "FirstError"
-            is ModelResult.Error.RuntimeError -> "SecondError"
-            ModelResult.Progressing -> "Progressing"
+            is ModelResult.Success<*> -> "Success"
+            ModelResult.SuccessNoContent -> "SuccessNoContent"
+            is ModelResult.Failure -> "Failure"
+            ModelResult.Loading -> "Loading"
+            ModelResult.Loaded -> "Loaded"
             else -> "?"
         }
 }
