@@ -11,29 +11,29 @@ import java.math.BigDecimal
 
 class LoginViewModel : BaseViewModel() {
 
-    private val mMailLiveData = EditTextMutableLiveData("jeff@mail.com")
-    val editTextMailLiveData: EditTextLiveData = mMailLiveData
+    private val _mailLiveData = EditTextMutableLiveData("jeff@mail.com")
+    val editTextMailLiveData: EditTextLiveData = _mailLiveData
 
-    private val mPasswordLiveData = EditTextMutableLiveData("123456")
-    val editTextPasswordLiveData: EditTextLiveData = mPasswordLiveData
+    private val _passwordLiveData = EditTextMutableLiveData("123456")
+    val editTextPasswordLiveData: EditTextLiveData = _passwordLiveData
 
-    private val mLoginUser = MutableLiveData<LoginUser>()
-    val loginUser: LiveData<LoginUser> = mLoginUser
+    private val _loginUser = MutableLiveData<LoginUser>()
+    val loginUser: LiveData<LoginUser> = _loginUser
 
     fun updatedLoginUser() {
-        mLoginUser.value = LoginUser(mMailLiveData.value, mPasswordLiveData.value)
+        _loginUser.value = LoginUser(_mailLiveData.value, _passwordLiveData.value)
     }
 
     fun resetInput() {
-        mMailLiveData.value = ""
-        mPasswordLiveData.value = ""
+        _mailLiveData.value = ""
+        _passwordLiveData.value = ""
     }
 
     // Transformations Map
-    val mapLiveData = Transformations.map(mMailLiveData, String::toUpperCase)
+    val mapLiveData = Transformations.map(_mailLiveData, String::toUpperCase)
 
     // Transformations Switch Map
-    val switchMapLiveData = Transformations.switchMap(mPasswordLiveData) { string ->
+    val switchMapLiveData = Transformations.switchMap(_passwordLiveData) { string ->
         MutableLiveData<BigDecimal>().also { liveData ->
             liveData.value = string.toBigDecimalOrNull() ?: BigDecimal(0)
         }

@@ -5,9 +5,9 @@ import com.utils.lifecycle.PluginEditTextMutableLiveData
 import com.view.base.BaseViewModel
 
 class EditTextViewModel : BaseViewModel() {
-    private val mPluginEditTextMutableLiveData = PluginEditTextMutableLiveData().also {
+    private val _pluginEditTextMutableLiveData = PluginEditTextMutableLiveData().also {
         it.setTextListener(CurrencyEditLiveDataListener())
     }
 
-    val pluginEditTextLiveData: PluginEditTextLiveData = mPluginEditTextMutableLiveData
+    val pluginEditTextLiveData: PluginEditTextLiveData = _pluginEditTextMutableLiveData
 }

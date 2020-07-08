@@ -12,13 +12,13 @@ import java.net.URI
 
 class WebSocketViewModel : LogcatViewModel() {
 
-    private val mIsConnection = MutableLiveData(false)
-    val isConnection: LiveData<Boolean> = mIsConnection
+    private val _isConnection = MutableLiveData(false)
+    val isConnection: LiveData<Boolean> = _isConnection
 
     fun connectLocal() {
         val listener = object : JFWebSocketListener {
             override fun onOpen(handshake: ServerHandshake) {
-                mIsConnection.postValue(true)
+                _isConnection.postValue(true)
 
                 JFLog.d("onOpen status : ${handshake.httpStatus}").also {
                     appendMessage(it, isPost = true)
@@ -35,7 +35,7 @@ class WebSocketViewModel : LogcatViewModel() {
             }
 
             override fun onClose(code: Int, reason: String?, remote: Boolean) {
-                mIsConnection.postValue(false)
+                _isConnection.postValue(false)
 
                 JFLog.d("onClose code: $code").also {
                     appendMessage(it, isPost = true)
@@ -49,7 +49,7 @@ class WebSocketViewModel : LogcatViewModel() {
             }
 
             override fun onError(e: Exception) {
-                mIsConnection.postValue(false)
+                _isConnection.postValue(false)
 
                 JFLog.e(e).also {
                     appendMessage(it, isPost = true)

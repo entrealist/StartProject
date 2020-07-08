@@ -16,8 +16,8 @@ import java.io.File
 class FileContentViewModel : BaseViewModel() {
     private val appContext = MyApplication.applicationContext()
 
-    private val mStatus = MutableLiveData<ModelResult<String>>()
-    val result: LiveData<ModelResult<String>> = mStatus
+    private val _status = MutableLiveData<ModelResult<String>>()
+    val result: LiveData<ModelResult<String>> = _status
 
     fun readFile(path: String, isInit: Boolean = false) {
         viewModelScope.launch {
@@ -44,13 +44,13 @@ class FileContentViewModel : BaseViewModel() {
                 .flowOn(Dispatchers.IO)
                 .onStart {
                     updateProcessing(true)
-                    mStatus.value = ModelResult.Progressing
+                    _status.value = ModelResult.Progressing
                 }
                 .onCompletion {
                     updateProcessing(false)
                 }
                 .collect {
-                    mStatus.value = it
+                    _status.value = it
                 }
         }
     }

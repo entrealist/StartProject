@@ -1,34 +1,30 @@
 package com.jeff.startproject.model.api
 
-sealed class ApiResult<T> {
+sealed class ApiResult<out T> {
     companion object {
-        fun <T> loading(): ApiResult<T> {
-            return Loading()
-        }
-
-        fun <T> loaded(): ApiResult<T> {
-            return Loaded()
-        }
-
-        fun <T> error(throwable: Throwable): ApiResult<T> {
-            return Error(throwable)
-        }
-
         fun <T> success(result: T?): ApiResult<T> {
             return when (result) {
-                null -> Empty()
+                null -> SuccessNoContent
                 else -> Success(result)
             }
         }
+
+        fun <T> failure(throwable: Throwable): ApiResult<T> {
+            return Failure(throwable)
+        }
+
+        fun <T> loading(): ApiResult<T> {
+            return Loading
+        }
+
+        fun <T> loaded(): ApiResult<T> {
+            return Loaded
+        }
     }
 
-    data class Success<T>(val result: T) : ApiResult<T>()
-
-    data class Error<T>(val throwable: Throwable) : ApiResult<T>()
-
-    class Empty<T> : ApiResult<T>()
-
-    class Loading<T> : ApiResult<T>()
-
-    class Loaded<T> : ApiResult<T>()
+    data class Success<out T>(val data: T) : ApiResult<T>()
+    object SuccessNoContent : ApiResult<Nothing>()
+    data class Failure(val throwable: Throwable) : ApiResult<Nothing>()
+    object Loading : ApiResult<Nothing>()
+    object Loaded : ApiResult<Nothing>()
 }

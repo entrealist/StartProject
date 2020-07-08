@@ -5,19 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import com.view.base.BaseViewModel
 
 abstract class LogcatViewModel : BaseViewModel() {
-    private val mRecordLog by lazy { MutableLiveData<String>() }
-    val recordLog: LiveData<String> get() = mRecordLog
+    private val _recordLog by lazy { MutableLiveData<String>() }
+    val recordLog: LiveData<String> get() = _recordLog
 
-    private val mStringBuilder = StringBuilder()
+    private val _stringBuilder = StringBuilder()
 
     fun appendMessage(message: String?, isPost: Boolean = false) {
         if (message != null) {
-            mStringBuilder.appendln(message)
-            mStringBuilder.toString().also {
+            _stringBuilder.appendln(message)
+            _stringBuilder.toString().also {
                 if (isPost) {
-                    mRecordLog.postValue(it)
+                    _recordLog.postValue(it)
                 } else {
-                    mRecordLog.value = it
+                    _recordLog.value = it
                 }
             }
         }

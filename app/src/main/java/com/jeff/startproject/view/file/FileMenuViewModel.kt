@@ -25,8 +25,8 @@ class FileMenuViewModel : BaseViewModel() {
     val mvPath = "$rootPath/mv.sh"
     val rmPath = "$rootPath/rm.sh"
 
-    private val mBtnStartText = MutableLiveData(appContext.getString(R.string.text_start))
-    val btnStartText: LiveData<String> = mBtnStartText
+    private val _btnStartText = MutableLiveData(appContext.getString(R.string.text_start))
+    val btnStartText: LiveData<String> = _btnStartText
 
     fun start() {
         viewModelScope.launch {
@@ -93,11 +93,11 @@ class FileMenuViewModel : BaseViewModel() {
                     .flowOn(Dispatchers.IO)
                     .onStart {
                         updateProcessing(true)
-                        mBtnStartText.value = appContext.getString(R.string.text_processing)
+                        _btnStartText.value = appContext.getString(R.string.text_processing)
                     }
                     .onCompletion {
                         updateProcessing(false)
-                        mBtnStartText.value = appContext.getString(R.string.text_finish)
+                        _btnStartText.value = appContext.getString(R.string.text_finish)
                     }
                     .collect {
                     }
@@ -112,7 +112,7 @@ class FileMenuViewModel : BaseViewModel() {
                 File(mvPath).delete()
                 File(rmPath).delete()
 
-                mBtnStartText.value = appContext.getString(R.string.text_start)
+                _btnStartText.value = appContext.getString(R.string.text_start)
 
                 delay(1000L)
             }
