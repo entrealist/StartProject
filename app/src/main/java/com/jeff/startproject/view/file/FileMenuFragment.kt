@@ -16,11 +16,9 @@ import com.view.base.BaseFragment
 import com.view.base.NavigateItem
 import kotlinx.coroutines.launch
 
-class FileMenuFragment : BaseFragment<FragmentFileMenuBinding, FileMenuViewModel>() {
+class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
 
     val viewModel: FileMenuViewModel by viewModels()
-
-    override fun fetchViewModel() = viewModel
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentFileMenuBinding =
         FragmentFileMenuBinding.inflate(inflater, container, false)
@@ -33,18 +31,22 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding, FileMenuViewModel
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel.existActiveTask.observe(this, Observer {
-            if (it) {
-                ConfirmDialogFragment(getString(R.string.message_wait), false).show(parentFragmentManager, "Confirm")
-            }
-        })
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.existActiveTask.observe(viewLifecycleOwner, Observer { event ->
+            event.getContentIfNotHandled()?.also {
+                if (it) {
+                    ConfirmDialogFragment(getString(R.string.message_wait), false).show(parentFragmentManager, "Confirm")
+                }
+            }
+        })
+
+        viewModel.request.observe(viewLifecycleOwner, Observer { event ->
+            event.getContentIfNotHandled()?.also {
+                JFLog.d("Request result: $it")
+            }
+        })
 
         viewModel.btnStartText.observe(viewLifecycleOwner, Observer {
             binding.btnStart.text = it

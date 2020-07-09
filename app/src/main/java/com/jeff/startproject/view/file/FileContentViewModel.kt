@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jeff.startproject.R
 import com.jeff.startproject.enums.ModelResult
-import com.jeff.startproject.utils.SingleEvent
+import com.utils.lifecycle.SingleEvent
 import com.view.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -16,7 +16,7 @@ import org.koin.core.inject
 import java.io.File
 
 class FileContentViewModel : BaseViewModel() {
-    private val appContext: Context by inject()
+    private val context: Context by inject()
 
     private val _status = MutableLiveData<SingleEvent<ModelResult<String>>>()
     val status: LiveData<SingleEvent<ModelResult<String>>> = _status
@@ -30,17 +30,18 @@ class FileContentViewModel : BaseViewModel() {
 
                 val file = File(path)
                 when (file.exists()) {
-                    false -> ModelResult.failure(RuntimeException(appContext.getString(R.string.message_file_not_found)))
+                    false -> {
+                        val message = context.getString(R.string.message_file_not_found)
+                        throw RuntimeException(message)
+                    }
                     true -> {
                         val lines = file.readLines()
                         val sb = StringBuilder()
                         for (line in lines) {
                             sb.appendln(line)
                         }
-                        ModelResult.success(sb.toString())
+                        emit(ModelResult.success(sb.toString()))
                     }
-                }.also { result ->
-                    emit(result)
                 }
             }
                 .flowOn(Dispatchers.IO)
@@ -48,11 +49,9 @@ class FileContentViewModel : BaseViewModel() {
                     emit(ModelResult.failure(e))
                 }
                 .onStart {
-                    updateProcessing(true)
                     emit(ModelResult.loading())
                 }
                 .onCompletion {
-                    updateProcessing(false)
                     emit(ModelResult.loaded())
                 }
                 .collect {

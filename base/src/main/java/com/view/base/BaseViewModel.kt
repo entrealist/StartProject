@@ -3,6 +3,7 @@ package com.view.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.utils.lifecycle.SingleEvent
 import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 
@@ -12,14 +13,8 @@ import org.koin.core.KoinComponent
  * without get(): 初化時就會觸發
  */
 abstract class BaseViewModel : ViewModel(), KoinComponent {
-    private val _processing by lazy { MutableLiveData<Boolean>() }
-    val processing: LiveData<Boolean> get() = _processing
-    fun updateProcessing(isProcessing: Boolean) {
-        _processing.value = isProcessing
-    }
-
-    private val _existActiveTask by lazy { MutableLiveData<Boolean>() }
-    val existActiveTask: LiveData<Boolean> get() = _existActiveTask
+    private val _existActiveTask by lazy { MutableLiveData<SingleEvent<Boolean>>() }
+    val existActiveTask: LiveData<SingleEvent<Boolean>> get() = _existActiveTask
 
     private var activeTask: Deferred<Any>? = null
 
@@ -48,7 +43,7 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
     suspend fun joinPreviousOrRun(block: suspend () -> Any): Any {
         // 如果當前有正在執行的 activeTask ，直接返回
         activeTask?.let {
-            _existActiveTask.postValue(true)
+            _existActiveTask.postValue(SingleEvent(true))
             return it.await()
         }
 

@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.utils.lifecycle
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -37,7 +37,6 @@ class AutoClearedValue<T : Any>(val fragment: Fragment) : ReadWriteProperty<Frag
                 fragment.viewLifecycleOwnerLiveData.observe(fragment) { viewLifecycleOwner ->
                     viewLifecycleOwner?.lifecycle?.addObserver(object: DefaultLifecycleObserver {
                         override fun onDestroy(owner: LifecycleOwner) {
-                            Log.d("JFLog", "autoCleared")
                             _value = null
                         }
                     })

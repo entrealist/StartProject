@@ -11,14 +11,12 @@ import androidx.viewbinding.ViewBinding
 import com.utils.lifecycle.autoCleared
 import kotlinx.coroutines.*
 
-abstract class BaseFragment<out B : ViewBinding, out VM : BaseViewModel> : Fragment() {
+abstract class BaseFragment<out B : ViewBinding> : Fragment() {
 
     private var _viewBinding by autoCleared<B>()
     val binding: B get() = _viewBinding
 
     abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): B
-
-    abstract fun fetchViewModel(): VM?
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return getViewBinding(inflater, container).run {
@@ -43,7 +41,7 @@ abstract class BaseFragment<out B : ViewBinding, out VM : BaseViewModel> : Fragm
                         }
                     }
                 }
-                delay(1500L)
+                delay(1000L)
             }
         }
     }

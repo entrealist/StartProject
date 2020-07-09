@@ -16,11 +16,9 @@ import com.jeff.startproject.view.diaglog.ConfirmDialogFragment
 import com.log.JFLog
 import com.view.base.NavigateItem
 
-class FileContentFragment : ProgressFragment<FragmentFileContentBinding, FileContentViewModel>() {
+class FileContentFragment : ProgressFragment<FragmentFileContentBinding>() {
 
     val viewModel: FileContentViewModel by viewModels()
-
-    override fun fetchViewModel() = viewModel
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentFileContentBinding =
         FragmentFileContentBinding.inflate(inflater, container, false)
@@ -30,14 +28,16 @@ class FileContentFragment : ProgressFragment<FragmentFileContentBinding, FileCon
 
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
             // Handle the back button event
-            ConfirmDialogFragment(getString(R.string.message_back_disable), false).show(
-                parentFragmentManager,
-                "Confirm"
-            )
+            ConfirmDialogFragment(getString(R.string.message_back_disable), false).show(parentFragmentManager, "Confirm")
         }
 
         viewModel.status.observe(viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.also { result ->
+                when (result) {
+                    ModelResult.Loading -> progressHUD.show()
+                    ModelResult.Loaded -> progressHUD.dismiss()
+                }
+
                 when (result) {
                     is ModelResult.Success -> {
                         result.data

@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jeff.startproject.MyApplication
 import com.jeff.startproject.R
+import com.jeff.startproject.enums.ModelResult
 import com.log.JFLog
 import com.utils.extension.fileExtension
+import com.utils.lifecycle.SingleEvent
 import com.view.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -27,6 +29,9 @@ class FileMenuViewModel : BaseViewModel() {
 
     private val _btnStartText = MutableLiveData(appContext.getString(R.string.text_start))
     val btnStartText: LiveData<String> = _btnStartText
+
+    private val _request = MutableLiveData<SingleEvent<ModelResult<Nothing>>>()
+    val request: LiveData<SingleEvent<ModelResult<Nothing>>> = _request
 
     fun start() {
         viewModelScope.launch {
@@ -88,18 +93,19 @@ class FileMenuViewModel : BaseViewModel() {
                     JFLog.d("Finish: ${System.currentTimeMillis() - startTime} ns")
 
                     delay(5000L)
-                    emit(true)
+                    emit(ModelResult.success(null))
                 }
                     .flowOn(Dispatchers.IO)
                     .onStart {
-                        updateProcessing(true)
                         _btnStartText.value = appContext.getString(R.string.text_processing)
+                        emit(ModelResult.loading())
                     }
                     .onCompletion {
-                        updateProcessing(false)
                         _btnStartText.value = appContext.getString(R.string.text_finish)
+                        emit(ModelResult.loaded())
                     }
                     .collect {
+                        _request.value = SingleEvent(it)
                     }
             }
         }
