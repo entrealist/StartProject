@@ -10,6 +10,7 @@ import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.draw.DrawActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
+import com.jeff.startproject.view.eventbus.LiveEventBusActivity
 import com.jeff.startproject.view.file.FileActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.login.LoginActivity
@@ -58,6 +59,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnEventBus.setOnClickListener {
             Intent(this, EventBusActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnLiveEventBus.setOnClickListener {
+            Intent(this, LiveEventBusActivity::class.java).also {
                 startActivity(it)
             }
         }

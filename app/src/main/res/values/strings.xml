@@ -4,6 +4,7 @@
     <string name="text_room">Room</string>
     <string name="text_flow">Flow</string>
     <string name="text_event_bus">Event bus</string>
+    <string name="text_live_event_bus">Live event bus</string>
     <string name="text_text_watcher">Text watcher</string>
     <string name="text_sample">Sample</string>
     <string name="text_animation">Animation</string>

@@ -29,9 +29,7 @@
         </activity>
 
         <activity android:name=".view.eventbus.EventBusActivity" />
-        <activity
-            android:name=".view.table.TableActivity"
-            android:theme="@style/TransparentBarTheme" />
+        <activity android:name=".view.eventbus.LiveEventBusActivity" />
         <activity android:name=".view.edittext.EditTextActivity" />
         <activity android:name=".view.db.DbActivity" />
         <activity android:name=".view.flowcontrol.FlowControlActivity" />

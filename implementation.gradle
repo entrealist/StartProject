@@ -37,7 +37,8 @@ ext {
             swipe_refresh_layout_version: '1.1.0',
             websocket_version           : '1.5.1',
             nav_version                 : '2.3.0',
-            stetho_version              : '1.5.1'
+            stetho_version              : '1.5.1',
+            event_bus_version           : '3.2.0'
     ]
 
     dependencies = [
@@ -52,7 +53,7 @@ ext {
             "lifecycle_viewmodel" : "androidx.lifecycle:lifecycle-viewmodel-ktx:${version["ktx_extensions_version"]}",
             "lifecycle_livedata"  : "androidx.lifecycle:lifecycle-livedata-ktx:${version["ktx_extensions_version"]}",
             "lifecycle_runtime"   : "androidx.lifecycle:lifecycle-runtime-ktx:${version["ktx_extensions_version"]}",
-            "lifecycle_common"   : "androidx.lifecycle:lifecycle-common-java8:${version["ktx_extensions_version"]}",
+            "lifecycle_common"    : "androidx.lifecycle:lifecycle-common-java8:${version["ktx_extensions_version"]}",
 
             // Test
             "junit"               : "junit:junit:${version["junit_version"]}",
@@ -89,6 +90,7 @@ ext {
 
             // Bus
             "live_event_bus"      : "com.jeremyliao:live-event-bus-x:${version["live_event_bus_version"]}",
+            "event_bus"           : "org.greenrobot:eventbus:${version["event_bus_version"]}",
 
             // Room
             "room_runtime"        : "androidx.room:room-runtime:${version["room_version"]}",

@@ -3,24 +3,20 @@ package com.jeff.startproject.view.eventbus
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.jeff.startproject.databinding.ActivityEventBusBinding
-import com.jeremyliao.liveeventbus.LiveEventBus
 import com.log.JFLog
 import com.view.base.BaseActivity
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.random.Random
 
-/*
- * https://github.com/JeremyLiao/LiveEventBus
- *
- * https://material.io/develop/android/components/material-text-view/
- */
-
 class EventBusActivity : BaseActivity<ActivityEventBusBinding>() {
 
     private val viewModel: EventBusViewModel by viewModels()
+
 
     override fun getViewBinding(): ActivityEventBusBinding {
         return ActivityEventBusBinding.inflate(layoutInflater)
@@ -29,166 +25,111 @@ class EventBusActivity : BaseActivity<ActivityEventBusBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        eventBusRegisterAuto()
+
         binding.btnNext.setOnClickListener {
             Intent(this, EventBusActivity::class.java).also {
                 startActivity(it)
             }
         }
 
-        //tryArray()
-        //tryString()
-        //tryInt()
-        //tryCustomize()
+        binding.btnSend.setOnClickListener {
+            //sendArray()
+            //sendString()
+            //sendInt()
+            //sendCustomize()
 
-        //trySelf()
+            //sendSelf()
 
-        //tryStringDelay()
+            sendStringSticky()
+        }
 
-        tryStringSticky()
+
     }
 
-    private fun tryArray() {
-        val key = "array"
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEventArray(array: Array<String>) {
+        val sb = StringBuilder()
 
-        LiveEventBus
-            .get(key, Array<String>::class.java)
-            .observe(this, Observer { array ->
-                val sb = StringBuilder()
+        array.forEach {
+            sb.append("$it, ")
+        }
 
-                array.forEach {
-                    sb.append("$it, ")
-                }
+        binding.editCommon.setText(sb.toString())
+    }
 
-                binding.edit1.setText(sb.toString())
-            })
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEventString(string: String) {
+        binding.editCommon.setText(string)
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEventInt(int: Int) {
+        binding.editCommon.setText("$int")
+    }
 
-        binding.btnSend.setOnClickListener {
-            val arrayList = ArrayList<String>()
-            arrayList.add("a")
-            arrayList.add("b")
-            arrayList.add("c")
-            arrayList.add("d")
-            arrayList.add("e")
-            arrayList.add("f")
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEventCustomize(userData: UserData) {
+        binding.editCommon.setText(userData.name)
+    }
 
-            LiveEventBus
-                .get(key)
-                .post(arrayList.toTypedArray())
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun handleEventSelf(activity: EventBusActivity) {
+        val code = "$this".substringAfterLast("@")
+        val receivedCoe = "$activity".substringAfterLast("@")
+        "$code : $receivedCoe".also {
+            JFLog.d(it)
+            binding.editCommon.setText(it)
         }
     }
 
-    private fun tryString() {
-        val key = "string"
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    fun handleEventSticky(string: String) {
+        val code = "$this".substringAfterLast("@")
 
-        LiveEventBus
-            .get(key, String::class.java)
-            .observe(this, Observer { string ->
-                binding.edit1.setText(string)
-            })
+        JFLog.d("$code : $string")
 
-
-        binding.btnSend.setOnClickListener {
-            LiveEventBus
-                .get(key)
-                .post("${Random(Calendar.getInstance().timeInMillis).nextInt()}")
-        }
+        binding.editSticky.setText(string)
     }
 
-    private fun tryInt() {
-        val key = "int"
+    private fun sendArray() {
+        val arrayList = ArrayList<String>()
+        arrayList.add("a")
+        arrayList.add("b")
+        arrayList.add("c")
+        arrayList.add("d")
+        arrayList.add("e")
+        arrayList.add("f")
 
-        LiveEventBus
-            .get(key, Int::class.java)
-            .observe(this, Observer { int ->
-                binding.edit1.setText("$int")
-            })
-
-
-        binding.btnSend.setOnClickListener {
-            LiveEventBus
-                .get(key)
-                .post(Random(Calendar.getInstance().timeInMillis).nextInt())
-        }
+        EventBus.getDefault()
+            .post(arrayList.toTypedArray())
     }
 
-    private fun tryCustomize() {
-        val key = "customize"
-
-        LiveEventBus
-            .get(key, UserData::class.java)
-            .observe(this, Observer { ver ->
-                binding.edit1.setText(ver.name)
-            })
-
-
-        binding.btnSend.setOnClickListener {
-            LiveEventBus
-                .get(key)
-                .post(UserData("Jeff"))
-        }
+    private fun sendString() {
+        EventBus.getDefault()
+            .post("${Random(Calendar.getInstance().timeInMillis).nextInt()}")
     }
 
-    private fun trySelf() {
-        val key = "self"
-
-        LiveEventBus
-            .get(key, EventBusActivity::class.java)
-            .observe(this, Observer { activity ->
-                val code = "$this".substringAfterLast("@")
-                val receivedCoe = "$activity".substringAfterLast("@")
-
-                "$code : $receivedCoe".also {
-                    JFLog.d(it)
-                    binding.edit1.setText(it)
-                }
-
-            })
-
-        binding.btnSend.setOnClickListener {
-            LiveEventBus
-                .get(key)
-                .post(this)
-        }
+    private fun sendInt() {
+        EventBus.getDefault()
+            .post(Random(Calendar.getInstance().timeInMillis).nextInt())
     }
 
-    private fun tryStringDelay() {
-        val key = "string"
+    private fun sendCustomize() {
+        EventBus.getDefault()
+            .post(UserData("Jeff"))
+    }
 
-        LiveEventBus
-            .get(key, String::class.java)
-            .observe(this, Observer { string ->
-                binding.edit1.setText(string)
-            })
-
-
-        binding.btnSend.setOnClickListener {
-            LiveEventBus
-                .get(key)
-                .postDelay("${Random(Calendar.getInstance().timeInMillis).nextInt()}", 5000L)
-        }
+    private fun sendSelf() {
+        EventBus.getDefault()
+            .post(this)
     }
 
     /**
      * Sticky: 註冊時會收到最後發送的消息
      */
-    private fun tryStringSticky() {
-        val key = "string"
-
-        LiveEventBus
-            .get(key, String::class.java)
-            .observeSticky(this, Observer { string ->
-                val code = "$this".substringAfterLast("@")
-
-                JFLog.d("$code : $string")
-
-                binding.edit1.setText(string)
-            })
-
-        binding.btnSend.setOnClickListener {
-            LiveEventBus
-                .get(key)
-                .post("${Random(Calendar.getInstance().timeInMillis).nextInt()}")
-        }
+    private fun sendStringSticky() {
+        EventBus.getDefault()
+            .postSticky("${Random(Calendar.getInstance().timeInMillis).nextInt()}")
     }
 }

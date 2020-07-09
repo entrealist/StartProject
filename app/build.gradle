@@ -95,6 +95,7 @@ dependencies {
     implementation rootProject.ext.dependencies["gson"]
 
     implementation rootProject.ext.dependencies["live_event_bus"]
+    implementation rootProject.ext.dependencies["event_bus"]
 
     implementation rootProject.ext.dependencies["room_runtime"]
     kapt rootProject.ext.dependencies["room_compiler"]
