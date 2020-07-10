@@ -1,3 +1,6 @@
 [submodule "versions"]
 	path = versions
 	url = https://jeffyu925@bitbucket.org/yulich/versions.git
+[submodule "base-android"]
+	path = base-android
+	url = https://jeffyu925@bitbucket.org/yulich/baseandroid.git
