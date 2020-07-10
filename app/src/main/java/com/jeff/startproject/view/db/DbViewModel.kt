@@ -2,7 +2,6 @@ package com.jeff.startproject.view.db
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.jeff.startproject.dao.UserDao
 import com.jeff.startproject.model.db.DbResult
 import com.jeff.startproject.model.db.User
@@ -11,10 +10,10 @@ import com.utils.lifecycle.SingleEvent
 import com.view.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class DbViewModel : BaseViewModel() {
+class DbViewModel : BaseViewModel(), KoinComponent {
 
     companion object {
         private const val METHOD = 2
