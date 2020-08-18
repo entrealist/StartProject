@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.jeff.startproject.databinding.ActivityMainBinding
 import com.jeff.startproject.view.adbcmd.AdbCmdActivity
 import com.jeff.startproject.view.chain.ChainActivity
+import com.jeff.startproject.view.datastructure.DataStructureActivity
 import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.draw.DrawActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
@@ -149,6 +150,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnPager.setOnClickListener {
             Intent(this, PagerActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnDataStructure.setOnClickListener {
+            Intent(this, DataStructureActivity::class.java).also {
                 startActivity(it)
             }
         }

@@ -50,6 +50,7 @@
             android:name=".view.file.FileActivity"
             android:theme="@style/TranslucentTheme" />
         <activity android:name=".view.pager.PagerActivity" />
+        <activity android:name=".view.datastructure.DataStructureActivity" />
     </application>
 
 </manifest>
