@@ -22,7 +22,7 @@ android {
         debug {
             buildConfigField "String", "API_HOST", '"https://api.github.com"'
             buildConfigField 'String', 'LOCAL_IP', "\"${InetAddress.localHost.hostAddress}\""
-            
+
             zipAlignEnabled false
             minifyEnabled false
             debuggable true
@@ -52,7 +52,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding  true
+        viewBinding true
     }
 }
 
