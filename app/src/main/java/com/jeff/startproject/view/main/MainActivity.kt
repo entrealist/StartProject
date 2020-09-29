@@ -17,6 +17,7 @@ import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.login.LoginActivity
 import com.jeff.startproject.view.navigation.NavigationActivity
 import com.jeff.startproject.view.pager.PagerActivity
+import com.jeff.startproject.view.preferences.PreferencesActivity
 import com.jeff.startproject.view.runtimeexec.RuntimeExecActivity
 import com.jeff.startproject.view.sample.SampleActivity
 import com.jeff.startproject.view.vector.VectorActivity
@@ -156,6 +157,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnDataStructure.setOnClickListener {
             Intent(this, DataStructureActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnPreference.setOnClickListener {
+            Intent(this, PreferencesActivity::class.java).also {
                 startActivity(it)
             }
         }

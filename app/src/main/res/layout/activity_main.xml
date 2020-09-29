@@ -368,7 +368,8 @@
                 android:layout_marginEnd="20dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/smoke_white">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_adb_cmd"
@@ -389,7 +390,8 @@
                 android:layout_marginEnd="20dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/smoke_white">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_runtime_exec"
@@ -410,13 +412,35 @@
                 android:layout_marginEnd="20dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:visibility="visible">
+                app:cardBackgroundColor="@color/smoke_white">
 
                 <com.yulichswift.roundedview.widget.RoundedTextView
                     android:id="@+id/btn_data_structure"
                     style="@style/btn_size_14"
                     android:layout_margin="20dp"
                     android:text="@string/text_data_structure"
+                    android:textColor="@android:color/white"
+                    app:btn_corner_radius="standard"
+                    app:btn_pressed_color="@android:color/darker_gray"
+                    app:btn_solid_color="@android:color/black" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/smoke_white">
+
+                <com.yulichswift.roundedview.widget.RoundedTextView
+                    android:id="@+id/btn_preference"
+                    style="@style/btn_size_14"
+                    android:layout_margin="20dp"
+                    android:text="@string/text_preference"
                     android:textColor="@android:color/white"
                     app:btn_corner_radius="standard"
                     app:btn_pressed_color="@android:color/darker_gray"

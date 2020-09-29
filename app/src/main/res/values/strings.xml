@@ -30,6 +30,7 @@
     <string name="text_share">Share</string>
     <string name="text_viewpager2">ViewPager2</string>
     <string name="text_data_structure">Data structure</string>
+    <string name="text_preference">Preference</string>
 
     <string name="message_file_not_found">File not found.</string>
     <string name="message_wait">Wait a second.</string>
