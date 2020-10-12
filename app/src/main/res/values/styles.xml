@@ -17,6 +17,12 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="TranslucentStatusTheme" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
     <style name="TranslucentTheme" parent="AppTheme">
         <!-- Customize your theme here. -->
         <item name="android:windowTranslucentStatus">true</item>
