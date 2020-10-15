@@ -53,14 +53,15 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:taskAffinity="com.jeff.file"
             android:theme="@style/TranslucentTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".view.pager.PagerActivity" />
         <activity android:name=".view.datastructure.DataStructureActivity" />
         <activity android:name=".view.preferences.PreferencesActivity" />
+        <activity android:name=".view.blur.BlurActivity" />
     </application>
 
 </manifest>

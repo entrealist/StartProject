@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.jeff.startproject.databinding.ActivityMainBinding
 import com.jeff.startproject.view.adbcmd.AdbCmdActivity
+import com.jeff.startproject.view.blur.BlurActivity
 import com.jeff.startproject.view.chain.ChainActivity
 import com.jeff.startproject.view.datastructure.DataStructureActivity
 import com.jeff.startproject.view.db.DbActivity
@@ -163,6 +164,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnPreference.setOnClickListener {
             Intent(this, PreferencesActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnBlur.setOnClickListener {
+            Intent(this, BlurActivity::class.java).also {
                 startActivity(it)
             }
         }
