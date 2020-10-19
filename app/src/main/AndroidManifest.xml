@@ -55,7 +55,9 @@
         <activity android:name=".view.pager.PagerActivity" />
         <activity android:name=".view.datastructure.DataStructureActivity" />
         <activity android:name=".view.preferences.PreferencesActivity" />
-        <activity android:name=".view.blur.BlurActivity" />
+        <activity
+            android:name=".view.blur.BlurActivity"
+            android:taskAffinity="com.jeff.blur.${applicationId}" />
 
         <activity-alias
             android:name="com.jeff.file"
