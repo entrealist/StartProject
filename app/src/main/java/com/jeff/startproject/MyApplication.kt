@@ -21,6 +21,10 @@ class MyApplication : Application() {
         fun applicationContext(): Application {
             return self
         }
+
+        fun getStatusBarHeight(): Int =
+            applicationContext().resources.getIdentifier("status_bar_height", "dimen", "android")
+                .takeIf { it > 0 }?.let { applicationContext().resources.getDimensionPixelSize(it) } ?: 0
     }
 
     init {

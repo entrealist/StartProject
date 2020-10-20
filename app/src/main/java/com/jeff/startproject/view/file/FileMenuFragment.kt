@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.jeff.startproject.MyApplication
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileMenuBinding
 import com.jeff.startproject.view.diaglog.ConfirmDialogFragment
@@ -33,6 +34,8 @@ class FileMenuFragment : BaseFragment<FragmentFileMenuBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.viewStatus.layoutParams.height = MyApplication.getStatusBarHeight()
 
         viewModel.existActiveTask.observe(viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.also {

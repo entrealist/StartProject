@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.jeff.startproject.MyApplication
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.FragmentFileContentBinding
 import com.jeff.startproject.enums.ModelResult
@@ -25,6 +26,8 @@ class FileContentFragment : ProgressFragment<FragmentFileContentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.viewStatus.layoutParams.height = MyApplication.getStatusBarHeight()
 
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
             // Handle the back button event
