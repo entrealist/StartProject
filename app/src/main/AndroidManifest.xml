@@ -58,6 +58,7 @@
         <activity
             android:name=".view.blur.BlurActivity"
             android:taskAffinity="com.jeff.blur.${applicationId}" />
+        <activity android:name=".view.floating.OpenFloatingActivity" />
 
         <activity-alias
             android:name="com.jeff.file"
@@ -74,6 +75,8 @@
                 <!--<category android:name="android.intent.category.LEANBACK_LAUNCHER" />-->
             </intent-filter>
         </activity-alias>
+
+        <service android:name=".floating.FloatingWindowService" />
     </application>
 
 </manifest>

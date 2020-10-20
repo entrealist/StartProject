@@ -14,6 +14,7 @@ import com.jeff.startproject.view.edittext.EditTextActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.eventbus.LiveEventBusActivity
 import com.jeff.startproject.view.file.FileActivity
+import com.jeff.startproject.view.floating.OpenFloatingActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.login.LoginActivity
 import com.jeff.startproject.view.navigation.NavigationActivity
@@ -170,6 +171,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnBlur.setOnClickListener {
             Intent(this, BlurActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnFloating.setOnClickListener {
+            Intent(this, OpenFloatingActivity::class.java).also {
                 startActivity(it)
             }
         }
