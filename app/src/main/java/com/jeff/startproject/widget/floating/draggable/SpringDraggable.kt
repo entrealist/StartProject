@@ -1,10 +1,11 @@
-package com.jeff.startproject.floating.draggable
+package com.jeff.startproject.widget.floating.draggable
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
+import com.jeff.startproject.MyApplication
 
 class SpringDraggable : BaseDraggable() {
     private var viewDownX = 0f
@@ -23,14 +24,14 @@ class SpringDraggable : BaseDraggable() {
             MotionEvent.ACTION_MOVE -> {
                 // 記錄移動的位置（相對屏幕的坐標）
                 rawMoveX = event.rawX.toInt()
-                rawMoveY = (event.rawY - statusBarHeight).toInt()
+                rawMoveY = (event.rawY - MyApplication.getStatusBarHeight()).toInt()
                 // 更新移動的位置
                 updateLocation(rawMoveX - viewDownX, rawMoveY - viewDownY)
             }
             MotionEvent.ACTION_UP -> {
                 // 記錄移動的位置（相對屏幕的坐標）
                 rawMoveX = event.rawX.toInt()
-                rawMoveY = (event.rawY - statusBarHeight).toInt()
+                rawMoveY = (event.rawY - MyApplication.getStatusBarHeight()).toInt()
                 // 獲取當前屏幕的寬度
                 val screenWidth = screenWidth
                 // 自動回彈吸附
@@ -57,7 +58,7 @@ class SpringDraggable : BaseDraggable() {
      * 獲取屏幕的寬度
      */
     private val screenWidth: Int
-        private get() {
+        get() {
             val outMetrics = DisplayMetrics()
             windowManager?.defaultDisplay?.getMetrics(outMetrics)
             return outMetrics.widthPixels

@@ -6,6 +6,7 @@ import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
+import android.util.DisplayMetrics
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -30,6 +31,12 @@ class MyApplication : Application(), LifecycleObserver {
         fun getStatusBarHeight(): Int =
             applicationContext().resources.getIdentifier("status_bar_height", "dimen", "android")
                 .takeIf { it > 0 }?.let { applicationContext().resources.getDimensionPixelSize(it) } ?: 0
+
+        private val display: DisplayMetrics
+            get() = self.resources.displayMetrics
+
+        fun getScreenWidthPx() = display.widthPixels
+        fun getScreenHeightPx() = display.heightPixels
     }
 
     init {

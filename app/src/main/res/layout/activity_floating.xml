@@ -49,9 +49,18 @@
         android:id="@+id/btn_open_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send view"
+        android:text="Horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_open_3" />
+
+    <Button
+        android:id="@+id/btn_open_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_open_4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

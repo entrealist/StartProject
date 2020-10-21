@@ -5,6 +5,8 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#4cff0000">

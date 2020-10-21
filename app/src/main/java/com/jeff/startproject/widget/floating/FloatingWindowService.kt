@@ -1,7 +1,6 @@
-package com.jeff.startproject.floating
+package com.jeff.startproject.widget.floating
 
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.graphics.PixelFormat
 import android.media.projection.MediaProjectionManager
@@ -34,7 +33,7 @@ class FloatingWindowService : Service() {
     private fun getScreenHeightPx() = display.heightPixels
 
     private val mediaProjectionManager: MediaProjectionManager
-        get() = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+        get() = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
 
     override fun onBind(intent: Intent?): IBinder? {
         JFLog.d("${this.hashCode()} onBind")
@@ -53,7 +52,7 @@ class FloatingWindowService : Service() {
         JFLog.d("${this.hashCode()} onCreate")
         floatingWindowService = this
         windowManager = applicationContext.getSystemService(WINDOW_SERVICE) as WindowManager
-        inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         initLayoutParams()
     }
 

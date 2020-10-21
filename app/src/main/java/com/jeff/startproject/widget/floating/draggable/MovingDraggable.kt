@@ -1,8 +1,9 @@
-package com.jeff.startproject.floating.draggable
+package com.jeff.startproject.widget.floating.draggable
 
 import android.annotation.SuppressLint
 import android.view.MotionEvent
 import android.view.View
+import com.jeff.startproject.MyApplication
 
 class MovingDraggable : BaseDraggable() {
     private var viewDownX = 0f
@@ -19,15 +20,13 @@ class MovingDraggable : BaseDraggable() {
             MotionEvent.ACTION_MOVE -> {
                 // 記錄移動的位置（相對屏幕的坐標）
                 val rawMoveX = event.rawX
-                val rawMoveY = event.rawY - statusBarHeight
+                val rawMoveY = event.rawY - MyApplication.getStatusBarHeight()
                 // 更新移動的位置
                 updateLocation(rawMoveX - viewDownX, rawMoveY - viewDownY)
             }
             MotionEvent.ACTION_UP ->
                 // 如果用戶移動了手指，那麼就攔截本次觸摸事件，從而不讓點擊事件生效
                 return isTouchMove(viewDownX, event.x, viewDownY, event.y)
-            else -> {
-            }
         }
         return false
     }
