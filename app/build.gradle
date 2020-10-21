@@ -75,6 +75,7 @@ dependencies {
     implementation rootProject.ext.dependencies["lifecycle_livedata"]
     implementation rootProject.ext.dependencies["lifecycle_runtime"]
     implementation rootProject.ext.dependencies["lifecycle_common"]
+    implementation rootProject.ext.dependencies["lifecycle_process"]
 
     implementation rootProject.ext.dependencies["koin_core"]
     implementation rootProject.ext.dependencies["koin_core_ext"]
