@@ -13,8 +13,8 @@ object FloatingWindowManager {
         viewList.forEach {
             val isAdded = viewStateMap.getOrDefault(it.hashCode(), false)
             if (isAdded) {
-                windowManager.removeView(it)
                 viewStateMap[it.hashCode()] = false
+                windowManager.removeView(it)
             }
         }
     }
@@ -32,8 +32,8 @@ object FloatingWindowManager {
                 val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
                 windowManager.removeView(it)
 
-                viewList.remove(it)
                 viewStateMap.remove(it.hashCode())
+                viewList.remove(it)
             }
         }
     }
@@ -42,17 +42,15 @@ object FloatingWindowManager {
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         viewList.forEach {
             val isAdded = viewStateMap.getOrDefault(it.hashCode(), false)
-
             if (!isAdded) {
-                windowManager.addView(it, it.layoutParams)
                 viewStateMap[it.hashCode()] = true
+                windowManager.addView(it, it.layoutParams)
             }
         }
     }
 
     fun addFloating(view: View) {
         viewStateMap[view.hashCode()] = true
-
         viewList.add(view)
     }
 }
