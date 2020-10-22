@@ -65,6 +65,10 @@ class FloatingMessageToast private constructor(private val context: Context) {
             findViewById<TextView>(R.id.tv_top).text = content
         }
 
+        private val screenWidthPx by lazy {
+            MyApplication.getScreenWidthPx()
+        }
+
         private var viewDownX = 0f
         private var isSwipeOut = false
 
@@ -84,9 +88,9 @@ class FloatingMessageToast private constructor(private val context: Context) {
                 MotionEvent.ACTION_UP -> {
                     rawMoveX = event.rawX.toInt()
                     // 移動超過設定距離, 移出View.
-                    if (rawMoveX - viewDownX > MyApplication.getScreenWidthPx() / 2) {
+                    if (rawMoveX - viewDownX > screenWidthPx / 2) {
                         isSwipeOut = true
-                        startAnimation(rawMoveX - viewDownX, MyApplication.getScreenWidthPx().toFloat())
+                        startAnimation(rawMoveX - viewDownX, screenWidthPx.toFloat())
                     } else {
                         // 從移動的點回彈到邊界上
                         startAnimation(rawMoveX - viewDownX, 0f)
@@ -115,6 +119,7 @@ class FloatingMessageToast private constructor(private val context: Context) {
 
         private fun updateLocation(x: Float) {
             if (translationX != x) {
+                alpha = 1 - x / screenWidthPx
                 translationX = x
             }
         }
