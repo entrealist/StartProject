@@ -1,43 +1,59 @@
-package com.jeff.startproject.widget.view
+package com.jeff.startproject.widget.floating
 
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.PixelFormat
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
-import com.jeff.startproject.MyApplication
 import com.jeff.startproject.R
 import kotlin.math.absoluteValue
 
-class FloatingMessageToast private constructor(private val context: Context) {
-
-    companion object {
-        fun builder(context: Context) = FloatingMessageToast(context)
-    }
+abstract class FloatingMessageToast<T>(private val context: Context) {
 
     interface FloatingMessageToastCallback {
         fun onCloseToast(view: View)
     }
 
-    private var callback: FloatingMessageToastCallback? = null
+    private val handler = Handler(Looper.getMainLooper())
+
+    private val screenWidthPx by lazy {
+        context.resources.displayMetrics.widthPixels
+    }
+
+    private val screenHeightPx by lazy {
+        context.resources.displayMetrics.heightPixels
+    }
+
+    abstract fun updateContentToView(content: T?, view: DraggableView)
+
+    protected var callback: FloatingMessageToastCallback? = null
+        private set
+
     fun setCallback(obj: FloatingMessageToastCallback) = apply {
-        callback = obj
+        this.callback = obj
     }
 
-    private var content: String? = null
-    fun setContent(text: String) = apply {
-        content = text
+    private var content: T? = null
+    fun setContent(content: T) = apply {
+        this.content = content
     }
 
-    fun show(): View = DraggableView(context).apply {
+    private var duration = 0L
+    fun setDuration(long: Long) = apply {
+        this.duration = long
+    }
+
+    fun show(): View = DraggableView(context).also {
+        updateContentToView(content, it)
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        windowManager.addView(this, getWindowLayoutParams())
+
+        windowManager.addView(it, getWindowLayoutParams())
     }
 
     private fun getWindowLayoutParams() = WindowManager.LayoutParams().apply {
@@ -51,29 +67,20 @@ class FloatingMessageToast private constructor(private val context: Context) {
         width = WindowManager.LayoutParams.MATCH_PARENT
         height = WindowManager.LayoutParams.WRAP_CONTENT
         x = 0
-        y = (MyApplication.getScreenHeightPx() * .5f).toInt()
+        y = (screenHeightPx * .5f).toInt()
     }
 
     inner class DraggableView @JvmOverloads constructor(context: Context) : FrameLayout(context) {
         init {
-            inflate(context, R.layout.view_message, this)
-
-            findViewById<ImageView>(R.id.btn).setOnClickListener {
-                callback?.onCloseToast(this)
-            }
-
-            findViewById<TextView>(R.id.tv_top).text = content
-        }
-
-        private val screenWidthPx by lazy {
-            MyApplication.getScreenWidthPx()
+            inflate(context, R.layout.view_floating_message, this)
         }
 
         private var viewDownX = 0f
         private var isSwipeOut = false
+        private var isTimesUp = false
 
         override fun onTouchEvent(event: MotionEvent): Boolean {
-            if (isSwipeOut)
+            if (isSwipeOut || isTimesUp)
                 return false
 
             val rawMoveX: Int
@@ -88,7 +95,7 @@ class FloatingMessageToast private constructor(private val context: Context) {
                 MotionEvent.ACTION_UP -> {
                     rawMoveX = event.rawX.toInt()
                     // 移動超過設定距離, 移出View.
-                    if (rawMoveX - viewDownX > screenWidthPx / 2) {
+                    if (rawMoveX - viewDownX > screenWidthPx / 3) {
                         isSwipeOut = true
                         startAnimation(rawMoveX - viewDownX, screenWidthPx.toFloat())
                     } else {
@@ -117,6 +124,10 @@ class FloatingMessageToast private constructor(private val context: Context) {
             animator.start()
         }
 
+        private fun isTouchMove(downX: Float, upX: Float): Boolean {
+            return downX != upX
+        }
+
         private fun updateLocation(x: Float) {
             if (translationX != x) {
                 alpha = 1 - x / screenWidthPx
@@ -124,8 +135,15 @@ class FloatingMessageToast private constructor(private val context: Context) {
             }
         }
 
-        private fun isTouchMove(downX: Float, upX: Float): Boolean {
-            return downX != upX
+        fun timesUp() {
+            isTimesUp = true
+
+            val animator = ValueAnimator.ofFloat(1f, 0f)
+            animator.duration = 200
+            animator.addUpdateListener { animation ->
+                alpha = animation.animatedValue as Float
+            }
+            animator.start()
         }
     }
 }
