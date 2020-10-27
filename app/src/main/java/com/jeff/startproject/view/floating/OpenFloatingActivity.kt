@@ -1,7 +1,9 @@
 package com.jeff.startproject.view.floating
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import com.jeff.startproject.MyApplication
 import com.jeff.startproject.R
@@ -18,6 +20,11 @@ class OpenFloatingActivity : BaseActivity<ActivityFloatingBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (!Settings.canDrawOverlays(this)) {
+            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName"))
+            startActivityForResult(intent, 0)
+        }
 
         binding.btnOpen1.setOnClickListener {
             val intent = Intent(this, FloatingWindowService::class.java)
@@ -50,7 +57,6 @@ class OpenFloatingActivity : BaseActivity<ActivityFloatingBinding>() {
         }
 
         binding.btnOpen6.setOnClickListener {
-
             val view = StringFloatingMessageToast
                 .builder(this)
                 .setContent("JeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeff")
