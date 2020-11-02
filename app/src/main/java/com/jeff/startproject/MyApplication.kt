@@ -1,11 +1,14 @@
 package com.jeff.startproject
 
 import android.app.Application
+import android.app.Service
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.DisplayMetrics
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -23,8 +26,8 @@ import org.koin.core.context.startKoin
 class MyApplication : Application(), LifecycleObserver {
 
     companion object {
-        lateinit var self: Application
-        fun applicationContext(): Application {
+        lateinit var self: MyApplication
+        fun applicationContext(): MyApplication {
             return self
         }
 
@@ -88,6 +91,16 @@ class MyApplication : Application(), LifecycleObserver {
 
         //shortcutManager.dynamicShortcuts = listOf(shortcut)
         shortcutManager.addDynamicShortcuts(listOf(shortcut))
+    }
+
+    fun startVibrate() {
+        val duration = 500L
+        val vibrator = getSystemService(Service.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            vibrator.vibrate(duration)
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)

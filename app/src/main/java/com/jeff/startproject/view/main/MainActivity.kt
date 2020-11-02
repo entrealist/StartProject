@@ -3,6 +3,7 @@ package com.jeff.startproject.view.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.jeff.startproject.MyApplication
 import com.jeff.startproject.databinding.ActivityMainBinding
 import com.jeff.startproject.view.adbcmd.AdbCmdActivity
 import com.jeff.startproject.view.blur.BlurActivity
@@ -179,6 +180,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             Intent(this, OpenFloatingActivity::class.java).also {
                 startActivity(it)
             }
+        }
+
+        binding.btnVibrate.setOnClickListener {
+            MyApplication.self.startVibrate()
         }
     }
 }
