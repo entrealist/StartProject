@@ -61,6 +61,7 @@
             android:name=".view.blur.BlurActivity"
             android:taskAffinity="com.jeff.blur.${applicationId}" />
         <activity android:name=".view.floating.OpenFloatingActivity" />
+        <activity android:name=".view.text.TextActivity" />
 
         <activity-alias
             android:name="com.jeff.file"
