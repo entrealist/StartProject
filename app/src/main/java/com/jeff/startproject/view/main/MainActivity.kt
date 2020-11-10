@@ -23,6 +23,7 @@ import com.jeff.startproject.view.pager.PagerActivity
 import com.jeff.startproject.view.preferences.PreferencesActivity
 import com.jeff.startproject.view.runtimeexec.RuntimeExecActivity
 import com.jeff.startproject.view.sample.SampleActivity
+import com.jeff.startproject.view.sort.DataSortActivity
 import com.jeff.startproject.view.text.TextActivity
 import com.jeff.startproject.view.vector.VectorActivity
 import com.jeff.startproject.view.websocket.WebSocketActivity
@@ -189,6 +190,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnTextView.setOnClickListener {
             Intent(this, TextActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnSort.setOnClickListener {
+            Intent(this, DataSortActivity::class.java).also {
                 startActivity(it)
             }
         }
