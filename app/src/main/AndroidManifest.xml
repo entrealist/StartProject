@@ -63,6 +63,7 @@
         <activity android:name=".view.floating.OpenFloatingActivity" />
         <activity android:name=".view.text.TextActivity" />
         <activity android:name=".view.sort.DataSortActivity" />
+        <activity android:name=".view.encrypt.EncryptActivity" />
 
         <activity-alias
             android:name="com.jeff.file"

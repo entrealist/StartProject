@@ -36,6 +36,7 @@
     <string name="text_vibrate">Vibrate</string>
     <string name="text_view">TextView</string>
     <string name="text_sort">Sort</string>
+    <string name="text_encrypt">Encrypt</string>
 
     <string name="message_file_not_found">File not found.</string>
     <string name="message_wait">Wait a second.</string>

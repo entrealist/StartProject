@@ -12,7 +12,6 @@ import com.jeff.startproject.widget.floating.*
 import com.jeff.startproject.widget.floating.draggable.MovingDraggable
 import com.jeff.startproject.widget.floating.draggable.SpringDraggable
 import com.view.base.BaseActivity
-import kotlinx.android.synthetic.main.view_floating.view.*
 
 class OpenFloatingActivity : BaseActivity<ActivityFloatingBinding>() {
 
@@ -50,7 +49,7 @@ class OpenFloatingActivity : BaseActivity<ActivityFloatingBinding>() {
 
         binding.btnOpen5.setOnClickListener {
             val floatingLayout = layoutInflater.inflate(R.layout.view_floating, null)
-            floatingLayout.btn.setOnClickListener {
+            floatingLayout.findViewById<View>(R.id.btn).setOnClickListener {
                 windowManager.removeView(floatingLayout)
             }
             FloatingWindowUtil.createFloatingWindow(this, false, floatingLayout)

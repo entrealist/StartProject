@@ -3,7 +3,6 @@ package com.jeff.startproject.view.sort
 import android.os.Bundle
 import com.jeff.startproject.databinding.ActivityDataSortBinding
 import com.view.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_data_sort.*
 import kotlin.random.Random
 
 // https://www.jianshu.com/p/a6aae0037f79
@@ -33,6 +32,6 @@ class DataSortActivity : BaseActivity<ActivityDataSortBinding>() {
             sb.append("$string\n")
         }
 
-        tv.text = sb.toString()
+        binding.tv.text = sb.toString()
     }
 }

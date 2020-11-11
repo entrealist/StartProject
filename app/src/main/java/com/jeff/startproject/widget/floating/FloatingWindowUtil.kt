@@ -11,7 +11,6 @@ import com.jeff.startproject.MyApplication
 import com.jeff.startproject.R
 import com.jeff.startproject.widget.floating.draggable.BaseDraggable
 import com.jeff.startproject.widget.view.draggable.TranslationXDraggable
-import kotlinx.android.synthetic.main.view_floating.view.*
 
 object FloatingWindowUtil {
 
@@ -39,7 +38,7 @@ object FloatingWindowUtil {
 
         draggable.start(windowManager, floatingLayout, layoutParams)
 
-        floatingLayout.btn.setOnClickListener {
+        floatingLayout.findViewById<View>(R.id.btn).setOnClickListener {
             draggable.stop()
             windowManager.removeView(floatingLayout)
         }
@@ -72,7 +71,7 @@ object FloatingWindowUtil {
 
         draggable.setTargetView(floatingLayout)
 
-        floatingLayout.btn.setOnClickListener {
+        floatingLayout.findViewById<View>(R.id.btn).setOnClickListener {
             draggable.removeTarget()
             windowManager.removeView(floatingLayout)
         }

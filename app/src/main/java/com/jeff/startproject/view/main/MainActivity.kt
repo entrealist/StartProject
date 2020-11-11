@@ -12,6 +12,7 @@ import com.jeff.startproject.view.datastructure.DataStructureActivity
 import com.jeff.startproject.view.db.DbActivity
 import com.jeff.startproject.view.draw.DrawActivity
 import com.jeff.startproject.view.edittext.EditTextActivity
+import com.jeff.startproject.view.encrypt.EncryptActivity
 import com.jeff.startproject.view.eventbus.EventBusActivity
 import com.jeff.startproject.view.eventbus.LiveEventBusActivity
 import com.jeff.startproject.view.file.FileActivity
@@ -196,6 +197,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnSort.setOnClickListener {
             Intent(this, DataSortActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnEncrypt.setOnClickListener {
+            Intent(this, EncryptActivity::class.java).also {
                 startActivity(it)
             }
         }

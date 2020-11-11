@@ -13,7 +13,6 @@ import android.view.View
 import android.view.WindowManager
 import com.jeff.startproject.R
 import com.log.JFLog
-import kotlinx.android.synthetic.main.view_floating.view.*
 
 class FloatingWindowService : Service() {
 
@@ -97,14 +96,14 @@ class FloatingWindowService : Service() {
 
     private fun createFloatingWindow() {
         if (floatingLayout == null) {
-            floatingLayout = inflater.inflate(R.layout.view_floating, null)
+            floatingLayout = inflater.inflate(R.layout.view_floating, null).apply {
+                findViewById<View>(R.id.btn).setOnClickListener {
+                    stopSelf()
+                }
+            }
             windowManager.addView(floatingLayout, layoutParams)
 
             //setFloatingNotTouchable()
-
-            floatingLayout?.btn?.setOnClickListener {
-                stopSelf()
-            }
 
             JFLog.d("Width: ${floatingLayout!!.layoutParams.width}")
         }

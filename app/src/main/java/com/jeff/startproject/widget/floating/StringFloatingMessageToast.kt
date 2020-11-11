@@ -1,7 +1,8 @@
 package com.jeff.startproject.widget.floating
 
 import android.content.Context
-import kotlinx.android.synthetic.main.view_floating_message.view.*
+import android.view.View
+import com.jeff.startproject.R
 
 class StringFloatingMessageToast private constructor(context: Context) : FloatingMessageToast<String>(context) {
 
@@ -10,7 +11,7 @@ class StringFloatingMessageToast private constructor(context: Context) : Floatin
     }
 
     override fun updateContentToView(content: String?, view: DraggableView) {
-        view.btn.setOnClickListener {
+        view.findViewById<View>(R.id.btn).setOnClickListener {
             callback?.onCloseToast(view)
         }
     }

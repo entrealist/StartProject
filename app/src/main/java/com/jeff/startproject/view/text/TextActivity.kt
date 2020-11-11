@@ -7,7 +7,6 @@ import android.text.style.ImageSpan
 import com.jeff.startproject.R
 import com.jeff.startproject.databinding.ActivityTextBinding
 import com.view.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_text.*
 
 class TextActivity : BaseActivity<ActivityTextBinding>() {
     override fun getViewBinding(): ActivityTextBinding {
@@ -37,6 +36,6 @@ class TextActivity : BaseActivity<ActivityTextBinding>() {
             }
         }
 
-        tv1.text = stringBuilder
+        binding.tv1.text = stringBuilder
     }
 }
