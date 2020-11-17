@@ -97,7 +97,13 @@ abstract class FloatingMessageToast<T>(private val context: Context) {
                     // 移動超過設定距離, 移出View.
                     if (rawMoveX - viewDownX > screenWidthPx / 3) {
                         isSwipeOut = true
-                        startAnimation(rawMoveX - viewDownX, screenWidthPx.toFloat())
+                        val endX = screenWidthPx.toFloat()
+                        startAnimation(rawMoveX - viewDownX, endX) {
+                            if (isSwipeOut && it == endX) {
+                                visibility = View.INVISIBLE
+                                callback?.onCloseToast(this)
+                            }
+                        }
                     } else {
                         // 從移動的點回彈到邊界上
                         startAnimation(rawMoveX - viewDownX, 0f)
@@ -109,16 +115,13 @@ abstract class FloatingMessageToast<T>(private val context: Context) {
             return false
         }
 
-        private fun startAnimation(startX: Float, endX: Float) {
+        private fun startAnimation(startX: Float, endX: Float, closure: ((Float) -> Unit)? = null) {
             val animator = ValueAnimator.ofFloat(startX, endX)
             animator.duration = ((endX - startX).absoluteValue / 2).toLong()
             animator.addUpdateListener { animation ->
                 (animation.animatedValue as Float).also {
                     updateLocation(it)
-                    if (isSwipeOut && endX == animation.animatedValue) {
-                        visibility = View.INVISIBLE
-                        callback?.onCloseToast(this)
-                    }
+                    closure?.invoke(it)
                 }
             }
             animator.start()

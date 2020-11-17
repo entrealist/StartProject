@@ -31,6 +31,7 @@ class FloatingWindowService : Service() {
     private fun getScreenWidthPx() = display.widthPixels
     private fun getScreenHeightPx() = display.heightPixels
 
+    // 螢幕錄影
     private val mediaProjectionManager: MediaProjectionManager
         get() = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
 
@@ -76,11 +77,12 @@ class FloatingWindowService : Service() {
     private fun initLayoutParams() {
         if (layoutParams == null) {
             layoutParams = WindowManager.LayoutParams().apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-                } else {
-                    type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT
-                }
+                type =
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+                    } else {
+                        WindowManager.LayoutParams.TYPE_SYSTEM_ALERT
+                    }
                 flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 format = PixelFormat.TRANSLUCENT
                 gravity = Gravity.TOP or Gravity.START

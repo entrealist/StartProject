@@ -4,11 +4,7 @@ import android.content.Context
 import android.view.View
 import com.jeff.startproject.R
 
-class StringFloatingMessageToast private constructor(context: Context) : FloatingMessageToast<String>(context) {
-
-    companion object {
-        fun builder(context: Context) = StringFloatingMessageToast(context)
-    }
+class StringFloatingMessageToast constructor(context: Context) : FloatingMessageToast<String>(context) {
 
     override fun updateContentToView(content: String?, view: DraggableView) {
         view.findViewById<View>(R.id.btn).setOnClickListener {

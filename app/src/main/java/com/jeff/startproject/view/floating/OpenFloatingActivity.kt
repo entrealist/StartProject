@@ -56,9 +56,8 @@ class OpenFloatingActivity : BaseActivity<ActivityFloatingBinding>() {
         }
 
         binding.btnOpen6.setOnClickListener {
-            val view = StringFloatingMessageToast
-                .builder(this)
-                .setContent("JeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeffJeff")
+            val view = StringFloatingMessageToast(this)
+                .setContent("Hello!!")
                 .setDuration(2000)
                 .setCallback(object : FloatingMessageToast.FloatingMessageToastCallback {
                     override fun onCloseToast(view: View) {
