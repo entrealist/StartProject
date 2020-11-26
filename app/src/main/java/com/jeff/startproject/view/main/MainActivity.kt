@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.jeff.startproject.MyApplication
 import com.jeff.startproject.databinding.ActivityMainBinding
+import com.jeff.startproject.view.OverrideTransitionActivity
 import com.jeff.startproject.view.adbcmd.AdbCmdActivity
 import com.jeff.startproject.view.blur.BlurActivity
 import com.jeff.startproject.view.chain.ChainActivity
@@ -203,6 +204,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnEncrypt.setOnClickListener {
             Intent(this, EncryptActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnOverrideTransition.setOnClickListener {
+            Intent(this, OverrideTransitionActivity::class.java).also {
                 startActivity(it)
             }
         }
