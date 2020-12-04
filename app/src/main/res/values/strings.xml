@@ -38,6 +38,7 @@
     <string name="text_sort">Sort</string>
     <string name="text_encrypt">Encrypt</string>
     <string name="text_override_transition">Override transition</string>
+    <string name="text_gson">Gson</string>
 
     <string name="message_file_not_found">File not found.</string>
     <string name="message_wait">Wait a second.</string>
