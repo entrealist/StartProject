@@ -18,6 +18,7 @@ import com.jeff.startproject.di.apiModule
 import com.jeff.startproject.di.appModule
 import com.jeff.startproject.di.dbModule
 import com.jeff.startproject.view.blur.BlurActivity
+import com.jeff.startproject.view.floating.OpenFloatingActivity
 import com.log.JFLog
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -57,10 +58,26 @@ class MyApplication : Application(), LifecycleObserver {
             modules(listOf(appModule, dbModule, apiModule))
         }
 
-        addDynamicShortcut(this, "com.jeff.blur")
+        addDynamicShortcut(
+            this,
+            BlurActivity::class.java,
+            "com.jeff.blur",
+            "Blur!",
+            "This is Blur.",
+            Icon.createWithResource(this, R.mipmap.ic_launcher)
+        )
+
+        addDynamicShortcut(
+            this,
+            OpenFloatingActivity::class.java,
+            "com.jeff.ofa",
+            "Floating!",
+            "Try floating.",
+            Icon.createWithResource(this, R.mipmap.ic_launcher)
+        )
     }
 
-    private fun addDynamicShortcut(application: Application, shortcutId: String) {
+    private fun addDynamicShortcut(application: Application, toClass: Class<out Any>, shortcutId: String, shortLabel: String, longLabel: String, icon: Icon) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
             return
         }
@@ -79,13 +96,13 @@ class MyApplication : Application(), LifecycleObserver {
             return
         }
 
-        val intent = Intent(this, BlurActivity::class.java)
+        val intent = Intent(this, toClass)
         intent.action = Intent.ACTION_VIEW
 
         val shortcut = ShortcutInfo.Builder(application, shortcutId)
-            .setShortLabel("Blur!")
-            .setLongLabel("BlurActivity")
-            .setIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
+            .setShortLabel(shortLabel)
+            .setLongLabel(longLabel)
+            .setIcon(icon)
             .setIntent(intent)
             .build()
 
