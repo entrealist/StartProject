@@ -13,8 +13,6 @@ class SpringDraggable : BaseDraggable() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-        val rawMoveX: Int
-        val rawMoveY: Int
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 // 記錄按下的位置（相對 View 的坐標）
@@ -23,27 +21,27 @@ class SpringDraggable : BaseDraggable() {
             }
             MotionEvent.ACTION_MOVE -> {
                 // 記錄移動的位置（相對屏幕的坐標）
-                rawMoveX = event.rawX.toInt()
-                rawMoveY = (event.rawY - MyApplication.getStatusBarHeight()).toInt()
+                val rawMoveX = event.rawX.toInt()
+                val rawMoveY = (event.rawY - MyApplication.getStatusBarHeight()).toInt()
                 // 更新移動的位置
                 updateLocation(rawMoveX - viewDownX, rawMoveY - viewDownY)
             }
             MotionEvent.ACTION_UP -> {
                 // 記錄移動的位置（相對屏幕的坐標）
-                rawMoveX = event.rawX.toInt()
-                rawMoveY = (event.rawY - MyApplication.getStatusBarHeight()).toInt()
-                // 獲取當前屏幕的寬度
-                val screenWidth = screenWidth
-                // 自動回彈吸附
-                val rawFinalX: Float
-                rawFinalX = if (rawMoveX < screenWidth / 2) {
-                    // 回彈到屏幕左邊
-                    0f
-                } else {
-                    // 回彈到屏幕右邊
-                    screenWidth.toFloat()
-                }
+                val rawMoveX = event.rawX.toInt()
+                val rawMoveY = (event.rawY - MyApplication.getStatusBarHeight()).toInt()
+
                 // 從移動的點回彈到邊界上
+                val rangeXOfMove = screenWidth - (windowParams!!.width)
+                val rawFinalX =
+                    if (windowParams!!.x < rangeXOfMove / 2) {
+                        // 回彈到屏幕左邊
+                        0f
+                    } else {
+                        // 回彈到屏幕右邊
+                        screenWidth.toFloat()
+                    }
+
                 startAnimation(rawMoveX - viewDownX, rawFinalX - viewDownX, rawMoveY - viewDownY)
                 // 如果用戶移動了手指，那麼就攔截本次觸摸事件，從而不讓點擊事件生效
                 return isTouchMove(viewDownX, event.x, viewDownY, event.y)
