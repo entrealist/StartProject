@@ -66,6 +66,7 @@
         <activity android:name=".view.encrypt.EncryptActivity" />
         <activity android:name=".view.OverrideTransitionActivity" />
         <activity android:name=".view.gson.GsonActivity" />
+        <activity android:name=".view.list.DragActivity" />
 
         <activity-alias
             android:name="com.jeff.file"

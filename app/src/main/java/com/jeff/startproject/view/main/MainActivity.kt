@@ -20,6 +20,7 @@ import com.jeff.startproject.view.file.FileActivity
 import com.jeff.startproject.view.floating.OpenFloatingActivity
 import com.jeff.startproject.view.flowcontrol.FlowControlActivity
 import com.jeff.startproject.view.gson.GsonActivity
+import com.jeff.startproject.view.list.DragActivity
 import com.jeff.startproject.view.login.LoginActivity
 import com.jeff.startproject.view.navigation.NavigationActivity
 import com.jeff.startproject.view.pager.PagerActivity
@@ -217,6 +218,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.btnGson.setOnClickListener {
             Intent(this, GsonActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.btnDrag.setOnClickListener {
+            Intent(this, DragActivity::class.java).also {
                 startActivity(it)
             }
         }
